@@ -161,6 +161,7 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
 
         //button save change password
         $scope.save_change=function(pw){
+            console.log('aaaaaaaaaa');
             //check empty old password
             if ($scope.pw.old == "")
             {
@@ -262,6 +263,7 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
         }
 
         }
+       
         
        
 })
@@ -294,6 +296,9 @@ webtabcontroller.controller('LoginCtrl', function($scope, $localStorage, geoloca
                     else if($scope.result._error_code == '04'){
                         alert($scope.result._error_messenger);
                         $scope.isexpired = true;
+                        $scope.islogin=false;
+                        $scope.ischangepw=true;
+                        $scope.isregister=false;
                         console.log(response.data);
                     }
                     else{
@@ -307,24 +312,25 @@ webtabcontroller.controller('LoginCtrl', function($scope, $localStorage, geoloca
 
         //show or hide form
         $scope.show = function(){
-            $scope.islogin = false;
+            $scope.isregister = true;
+            $scope.islogin=false;
         }
         $scope.hide = function(){
             $scope.islogin = true;
+            $scope.isregister=false;
         }
 
         //get data from register form
-           $scope.Rdatas=[];
-            $scope.Rdatas.username="";
-             $scope.Rdatas.password="";
-            $scope.Rdatas.fullname="";
-            $scope.Rdatas.mobile="";
-         $scope.register = function(Rdatas){
-            if($scope.Rdatas.username.length>6 && $scope.Rdatas.password.length>6 && $scope.Rdatas.fullname.length>6 && $scope.Rdatas.mobile.length>=9)
+         $scope.register = function(rdata){
+
+            $scope.rdata=[];
+            $scope.rdata.username="";
+            console.log($scope.rdata.username);
+            if(rdata.username.length>6 && rdata.password.length>6 && rdata.fullname.length>6 && rdata.mobile.length>10)
             {            
 
-                var rsapassword =md5.createHash($scope.Rdatas.password);
-                apiService.postRegister($scope.Rdatas.username, rsapassword, $scope.Rdatas.fullname, $scope.Rdatas.mobile).then(function(response){
+                var rsapassword =md5.createHash(rdata.password);
+                apiService.postRegister(rdata.username, rsapassword, rdata.fullname, rdata.mobile).then(function(response){
                     $scope.resultR = response.data;
                     if($scope.resultR._error_code == '00')
                     {
@@ -345,7 +351,90 @@ webtabcontroller.controller('LoginCtrl', function($scope, $localStorage, geoloca
                 $scope.registerfalse1 = true;
                 $scope.registerfalse = false;
                 $scope.registerok=false;
-                 $scope.resultR="Please complete the blank!";
+                $scope.resultR="Please complete the blank!"
             
         }
-       }})
+       }
+        $scope.pw=[];
+                $scope.pw.old = "";
+                $scope.pw.new = "";
+                $scope.pw.confirm = "";
+
+        $scope.error_oldpw=false;
+        $scope.error_newpw=false;
+        $scope.error_confirmpw=false;
+        //change password if > 30days
+        $scope.change_pw_again=function(pw){
+            console.log($scope.data.username);
+            //check empty old password
+            if ($scope.pw.old == "")
+            {
+                $scope.error_checkempty_old=true;
+            }
+            else {
+                $scope.error_checkempty_old=false;
+            }
+            //check empty new password
+            if ($scope.pw.new == "")
+            {
+                $scope.error_checkempty_new=true;
+                $scope.error_checklength=false;
+            }
+            else {
+                $scope.error_checkempty_new=false;
+            }
+            //check empty confirm password
+            if ($scope.pw.confirm == "")
+            {
+                $scope.error_checkempty_confirm=true;
+                $scope.error_confirmpw=false;
+            }
+            else {
+                $scope.error_checkempty_confirm=false;
+            }
+            //check length new password
+            if ($scope.pw.new.length < 6 && $scope.pw.new!=""){
+                $scope.error_checklength=true;
+                $scope.error_confirmpw=false;
+            }
+            else{
+                 $scope.error_checklength=false;
+            }
+            
+            if ($scope.error_checkempty_old==false && $scope.error_checkempty_new==false && $scope.error_checkempty_confirm==false ){
+                var rsa_oldpw = md5.createHash(pw.old);
+                var rsa_newpw = md5.createHash(pw.new);
+
+            if (pw.new!=pw.confirm) {
+                $scope.error_confirmpw=true;
+            }
+            else if($scope.error_checklength==false){
+             apiService.postChangePw($scope.data.username,rsa_oldpw,rsa_newpw).then(function (response) {
+                $scope.result = response.data;
+                 if ($scope.result._error_code == '03')
+                 {
+                     $scope.error_oldpw=true;
+                 }
+                 else {
+                       $scope.error_oldpw=false;
+                 }
+                 if ($scope.result._error_code=='00'){
+                     alert('Succesfull');
+                     window.location.reload(true);
+                     $scope.showchange=false;
+                     $scope.account=true;
+                     
+                 }
+
+                 $scope.error_confirmpw=false;
+                 console.log(response.data);
+            })
+            }}
+            
+            
+        }
+
+
+
+})
+       

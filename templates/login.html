@@ -1,54 +1,55 @@
-
 <style>
     .modal-backdrop {
-    background-color: transparent!important;
-    bottom: 0;
-    height: 100%;
-    left: 0;
-    position: fixed!important;
-    right: 0;
-    top: 0;
-    width: 100% !important;
-    z-index: 0 !important;
-}
-.modal {
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8)!important;
-    bottom: 0;
-    display: none;
-    left: 0;
-    outline: 0 none;
-    overflow-x: auto;
-    overflow-y: hidden!important;
-    position: fixed;
-    right: 0;
-    top: 0;
-    z-index: 1050;
-}
-    .alert {
-    padding: 20px;
-    background-color: #6ABC6E;
-    color: white;
-    font-size: 17px;
-}
-
-.closebtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.closebtn:hover {
-    color: black;
-}
-</style>
+        background-color: transparent!important;
+        bottom: 0;
+        height: 100%;
+        left: 0;
+        position: fixed!important;
+        right: 0;
+        top: 0;
+        width: 100% !important;
+        z-index: 0 !important;
+    }
     
+    .modal {
+        background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8)!important;
+        bottom: 0;
+        display: none;
+        left: 0;
+        outline: 0 none;
+        overflow-x: auto;
+        overflow-y: hidden!important;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 1050;
+    }
+    
+    .alert {
+        padding: 20px;
+        background-color: #6ABC6E;
+        color: white;
+        font-size: 17px;
+    }
+    
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    
+    .closebtn:hover {
+        color: black;
+    }
+</style>
 
-   
+
+
 <!-- Preloader -->
 <div id="preloader">
     <div id="status">&nbsp;</div>
@@ -64,101 +65,130 @@
                 <div id="logo-login">
                     <h1>HapIT
                         <span style="letter-spacing : 2px">v1.0</span>
-</h1>
-</div>
-</div>
+                    </h1>
+                </div>
+            </div>
 
-</div>
+        </div>
 
-<div class="row">
-    <div class="col-md-4 col-md-offset-4">
-        <div class="account-box" ng-show="islogin">
-            <form role="form" id="contact-form">
-                <div class="control-group">
-                    <!--<a href="#" class="pull-right label-forgot">Forgot email?</a>-->
-                    <label for="inputUsernameEmail" style="display : block">Email</label>
-<input type="text" ng-model="data.username" style="max-width : 92%;display : table-row" id="inputUsernameEmail" name="email" class="form-control valid">
-</div>
-<div class="form-group">
-    <!--<a href="#" class="pull-right label-forgot">Forgot password?</a>-->
-    <label for="inputPassword">Password</label>
-    <input type="password" ng-model="data.password" id="inputPassword" style="max-width : 92%;display : table-row" name="password" class="form-control valid">
-<h5 ng-show="_error" style="color: red; text-align: center">Email or Password incorrect, please try again !</h5>
-</div>
-<div class="checkbox pull-left">
-    <label>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="account-box" style="height : 450px" ng-show="ischangepw">
+                    <form role="form" id="contact-form">
+                        <div class="control-group">
+                            <label style="display : block">Old Password</label>
+                            <input type="password" ng-model="pw.old" style="max-width : 92%;display : table-row" id="" name="oldpw" class="form-control valid anx">
+                            <h5 ng-show="error_oldpw" style="font-weight: bold;color: #FF0064;">Incorrect old password , please try again !</h5>
+                            <h5 ng-show="error_checkempty_old" style="font-weight: bold;color: #FF0064;">This field is required.</h5>
+                        </div>
+                        <div class="control-group" style="margin-top : 5px">
+                            <label style="display : block">New Password</label>
+                            <input type="password" ng-model="pw.new" style="max-width : 92%;display : table-row" id="" name="newpw" class="form-control valid">
+                            <h5 ng-show="error_checklength" style="font-weight: bold;color: #FF0064;">New Password at least 6 characters. </h5>
+                            <h5 ng-show="error_checkempty_new" style="font-weight: bold;color: #FF0064;">This field is required.</h5>
+                        </div>
+                        <div class="control-group" style="margin-top : 5px">
+                            <label style="display : block">Confirm Password</label>
+                            <input type="password" ng-model="pw.confirm" style="max-width : 92%;display : table-row" id="" name="confirmpw" class="form-control valid">
+                            <h5 ng-show="error_checkempty_confirm" style="font-weight: bold;color: #FF0064;">This field is required.</h5>
+                            <h5 ng-show="error_confirmpw" style="font-weight: bold;color: #FF0064;">Please check confirm password !</h5>
+                        </div>
+                        <div class="control-group">
+                            <button class="btn btn btn-primary pull-right" style="margin-top : 15px" type="submit" ng-click="change_pw_again(pw)">
+                                        Save And Close
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="account-box" ng-show="islogin">
+                    <form role="form" id="contact-form">
+                        <div class="control-group">
+                            <!--<a href="#" class="pull-right label-forgot">Forgot email?</a>-->
+                            <label for="inputUsernameEmail" style="display : block">Email</label>
+                            <input type="text" ng-model="data.username" style="max-width : 92%;display : table-row" id="inputUsernameEmail" name="email"
+                                class="form-control valid">
+                        </div>
+                        <div class="form-group">
+                            <!--<a href="#" class="pull-right label-forgot">Forgot password?</a>-->
+                            <label for="inputPassword">Password</label>
+                            <input type="password" ng-model="data.password" id="inputPassword" style="max-width : 92%;display : table-row" name="password"
+                                class="form-control valid">
+                            <h5 ng-show="_error" style="color: red; text-align: center">Email or Password incorrect, please try again !</h5>
+                        </div>
+                        <div class="checkbox pull-left">
+                            <label>
                             <input type="checkbox">Remember me</label>
-</div>
-<div class="form-actions">
-    <button class="btn btn btn-primary pull-right" type="submit" ng-click="login(data)">
+                        </div>
+                        <div class="form-actions">
+                            <button class="btn btn btn-primary pull-right" type="submit" ng-click="login(data)">
                                         Log In
                             </button>
-</div>
-</form>
-<a class="forgotLnk" href="index.html"></a>
-<div class="or-box">
+                        </div>
+                    </form>
+                    <a class="forgotLnk" href="index.html"></a>
+                    <div class="or-box">
 
-    <center><span class="text-center login-with">Login or <b ng-click="show()">Sign Up</b></span></center>
-    <div class="row">
-        <div class="col-md-6 row-block">
-            <a href="index.html" class="btn btn-facebook btn-block">
-                <span class="entypo-facebook space-icon"></span>Facebook</a>
-        </div>
-        <div class="col-md-6 row-block">
-            <a href="index.html" class="btn btn-twitter btn-block">
-                <span class="entypo-twitter space-icon"></span>Twitter</a>
+                        <center><span class="text-center login-with">Login or <b ng-click="show()">Sign Up</b></span></center>
+                        <div class="row">
+                            <div class="col-md-6 row-block">
+                                <a href="index.html" class="btn btn-facebook btn-block">
+                                    <span class="entypo-facebook space-icon"></span>Facebook</a>
+                            </div>
+                            <div class="col-md-6 row-block">
+                                <a href="index.html" class="btn btn-twitter btn-block">
+                                    <span class="entypo-twitter space-icon"></span>Twitter</a>
 
-        </div>
-
-
-    </div>
-    <div style="margin-top:25px" class="row">
-<div class="col-md-6 row-block">
-    <a href="index.html" class="btn btn-google btn-block"><span class="entypo-gplus space-icon"></span>Google +</a>
-</div>
-<div class="col-md-6 row-block">
-    <a href="index.html" class="btn btn-instagram btn-block"><span class="entypo-instagrem space-icon"></span>Instagram</a>
-</div>
-
-</div>
-</div>
-<hr>
-<div class="row-block">
-    <div class="row">
-        <div class="col-md-12 row-block">
-            <a ng-click="show()" class="btn btn-primary btn-block">Create New Account</a>
-        </div>
-    </div>
-</div>
-</div>
+                            </div>
 
 
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        
-        <div class="modal-body">
-              <div ng-show="registerok">
-        <strong>Success !</strong> Please login in <a ng-click="hide()" style="color:blue; cursor: pointer">here</a>
-</div>
-        <div ng-show="registerfalse" >
-<strong>Error !</strong> {{resultR._error_messenger}}
-</div>
-        <div ng-show="registerfalse1" >
-<strong>Error !</strong> {{resultR}}
-</div>
- </div>
-    </div>
-    </div>
-  </div>
+                        </div>
+                        <div style="margin-top:25px" class="row">
+                            <div class="col-md-6 row-block">
+                                <a href="index.html" class="btn btn-google btn-block"><span class="entypo-gplus space-icon"></span>Google +</a>
+                            </div>
+                            <div class="col-md-6 row-block">
+                                <a href="index.html" class="btn btn-instagram btn-block"><span class="entypo-instagrem space-icon"></span>Instagram</a>
+                            </div>
 
-        
-  
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row-block">
+                        <div class="row">
+                            <div class="col-md-12 row-block">
+                                <a ng-click="show()" class="btn btn-primary btn-block">Create New Account</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<div class="account-box" ng-show="!islogin">
-    <form role="form" id="Register-form">
-        <!--<div class="alert" ng-show="registerok">
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+
+                            <div class="modal-body">
+                                <div ng-show="registerok">
+                                    <strong>Success !</strong> Please login in <a ng-click="hide()" style="color:blue; cursor: pointer">here</a>
+                                </div>
+                                <div ng-show="registerfalse">
+                                    <strong>Error !</strong> {{resultR._error_messenger}}
+                                </div>
+                                <div ng-show="registerfalse1">
+                                    <strong>Error !</strong> {{resultR}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="account-box" ng-show="isregister">
+                    <form role="form" id="Register-form">
+                        <!--<div class="alert" ng-show="registerok">
          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
 <strong>Success !</strong> Please login in <a ng-click="hide()" style="color: red; cursor: pointer">here</a>
 </div>
@@ -166,83 +196,87 @@
 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
 <strong>Error !</strong> {{resultR._error_messenger}}
 </div>-->
-<div class="control-group">
-    <label for="inputRegisterEmail" style="display : block">Email</label>
-<input type="text" ng-model="Rdatas.username" style="max-width : 92%;display : table-row" id="inputRegisterEmail" name="remail" class="form-control valid">
-</div>
-<div class="control-group">
-    <label for="inputRegisterPassword">Password</label>
-    <input type="password" ng-model="Rdatas.password" id="inputRegisterPassword" style="max-width : 92%;display : table-row" name="rpassword" class="form-control valid">
-</div>
-<div class="control-group">
-    <label for="inputRegisterFullname" style="display : block">Full Name</label>
-<input type="text" ng-model="Rdatas.fullname" style="max-width : 92%;display : table-row" id="inputRegisterFullname" name="rname" class="form-control valid">
-</div>
-<div class="control-group">
-    <label for="inputRegisterMobile" style="display : block">Phone number</label>
-<div class="input-group">
-    <div class="input-group-addon" id="sizing-addon1">
-        +84</div>
-    <input type="text" ng-model="Rdatas.mobile" style="max-width : 91%;display : table-row" id="inputRegisterMobile" name="rmobile" class="form-control valid" >
-</div>
-</div>
+                        <div class="control-group">
+                            <label for="inputRegisterEmail" style="display : block">Email</label>
+                            <input type="text" ng-model="rdata.username" style="max-width : 92%;display : table-row" id="inputRegisterEmail" name="remail"
+                                class="form-control valid">
+                        </div>
+                        <div class="control-group">
+                            <label for="inputRegisterPassword">Password</label>
+                            <input type="password" ng-model="rdata.password" id="inputRegisterPassword" style="max-width : 92%;display : table-row" name="rpassword"
+                                class="form-control valid">
+                        </div>
+                        <div class="control-group">
+                            <label for="inputRegisterFullname" style="display : block">Full Name</label>
+                            <input type="text" ng-model="rdata.fullname" style="max-width : 92%;display : table-row" id="inputRegisterFullname" name="rname"
+                                class="form-control valid">
+                        </div>
+                        <div class="control-group">
+                            <label for="inputRegisterMobile" style="display : block">Phone number</label>
+                            <div class="input-group">
+                                <div class="input-group-addon" id="sizing-addon1">
+                                    +84</div>
+                                <input type="text" ng-model="rdata.mobile" style="max-width : 91%;display : table-row" id="inputRegisterMobile" name="rmobile"
+                                    class="form-control valid">
+                            </div>
+                        </div>
 
-<hr style="border: 1px solid transparent; margin-bottom: 10px">
-<div class="row-block">
-    <div class="row">
-        <div class="col-md-12 row-block">
-            <button ng-click="register(Rdatas)" type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-block">Create New Account</button>
+                        <hr style="border: 1px solid transparent; margin-bottom: 10px">
+                        <div class="row-block">
+                            <div class="row">
+                                <div class="col-md-12 row-block">
+                                    <button ng-click="register(rdata)" type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-block">Create New Account</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="or-box" style="margin-top: 35px">
+
+                        <center>
+                            <center><span class="text-center login-with"><b ng-click="hide()">Login</b> or Sign Up </span></center>
+                        </center>
+                        <div class="row">
+                            <div class="col-md-6 row-block">
+                                <a href="index.html" class="btn btn-facebook btn-block">
+                                    <span class="entypo-facebook space-icon"></span>Facebook</a>
+                            </div>
+                            <div class="col-md-6 row-block">
+                                <a href="index.html" class="btn btn-twitter btn-block">
+                                    <span class="entypo-twitter space-icon"></span>Twitter</a>
+
+                            </div>
+
+                        </div>
+                        <div style="margin-top:25px" class="row">
+                            <div class="col-md-6 row-block">
+                                <a href="index.html" class="btn btn-google btn-block"><span class="entypo-gplus space-icon"></span>Google +</a>
+                            </div>
+                            <div class="col-md-6 row-block">
+                                <a href="index.html" class="btn btn-instagram btn-block"><span class="entypo-instagrem space-icon"></span>Instagram</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
-</div>
-</form>
 
-<div class="or-box" style="margin-top: 35px">
 
-<center>
-    <center><span class="text-center login-with"><b ng-click="hide()">Login</b> or Sign Up </span></center>
-</center>
-<div class="row">
-    <div class="col-md-6 row-block">
-        <a href="index.html" class="btn btn-facebook btn-block">
-            <span class="entypo-facebook space-icon"></span>Facebook</a>
+
+
+
+    <div style="text-align:center;margin:0 auto;">
+        <h6 style="color:#fff;font-size : 13px">Copyright © Tab-Tab made by HapIT 2016</h6>
     </div>
-    <div class="col-md-6 row-block">
-        <a href="index.html" class="btn btn-twitter btn-block">
-            <span class="entypo-twitter space-icon"></span>Twitter</a>
-
-    </div>
-
-</div>
-<div style="margin-top:25px" class="row">
-<div class="col-md-6 row-block">
-    <a href="index.html" class="btn btn-google btn-block"><span class="entypo-gplus space-icon"></span>Google +</a>
-</div>
-<div class="col-md-6 row-block">
-    <a href="index.html" class="btn btn-instagram btn-block"><span class="entypo-instagrem space-icon"></span>Instagram</a>
-</div>
-
-</div>
-</div>
-</div>
-
-</div>
-</div>
-</div>
-
-
-
-
-
-<div style="text-align:center;margin:0 auto;">
-<h6 style="color:#fff;font-size : 13px">Copyright © Tab-Tab made by HapIT 2016</h6>
-</div>
 
 </div>-->
 <div id="test1" class="gmap3"></div>
 <div id="span" ng-app='webtab' ng-controller="LoginCtrl" style="height: 0px; width: 0px"></div>
 
-   
+
 <script type="text/javascript">
 
                                                     window.onload = function () {
@@ -301,9 +335,9 @@
 
 
 </script>
-   
-    
- 
+
+
+
 <script>
         $(document).ready(function () {
 
@@ -460,7 +494,7 @@
 
         });
     </script>
-  
-    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-   
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+<script type="text/javascript" src="assets/js/bootstrap.js"></script>
+
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
