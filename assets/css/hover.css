@@ -1,0 +1,30 @@
+.profit:hover{
+    /*-webkit-filter: grayscale(50%);
+    filter: grayscale(50%);*/
+    border: 1px solid #DDD;
+    cursor : pointer;
+}
+.profit{
+    border: 1px solid transparent;
+
+}
+.showmore{
+      text-decoration: underline;
+}
+.showmore:hover{
+    color : black;
+  
+}
+.koata:hover{
+    color : black!important;
+    cursor : pointer;
+}
+input#dp3.form-control.showform1:focus {
+    border: 1px solid #ccc !important;
+}
+/*#myModal { 
+top:0;
+right:0%;
+outline: none;
+overflow:hidden;
+}*/

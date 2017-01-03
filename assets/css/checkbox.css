@@ -1,0 +1,61 @@
+.checkbox label:after, 
+.radio label:after {
+    content: ''!important;
+    display: table!important;
+    clear: both!important;
+}
+.checkbox:hover .profit {
+   opacity: .5;
+    pointer-events: none;
+}
+.checkbox .cr,
+.radio .cr {
+    position: relative!important;
+    display: inline-block!important;
+    border: 1px solid #a9a9a9!important;
+    border-radius: .25em!important;
+    width: 1.3em!important;
+    height: 1.3em!important;
+    float: left!important;
+    margin-right: .5em!important;
+}
+
+.radio .cr {
+    border-radius: 50%!important;
+}
+
+.checkbox .cr .cr-icon,
+.radio .cr .cr-icon {
+    position: absolute!important;
+    font-size: .8em!important;
+    line-height: 0!important;
+    top: 50%!important;
+    left: 20%!important;
+}
+
+.radio .cr .cr-icon {
+    margin-left: 0.04em!important;
+}
+
+.checkbox label input[type="checkbox"],
+.radio label input[type="radio"] {
+    display: none!important;
+}
+
+.checkbox label input[type="checkbox"] + .cr > .cr-icon,
+.radio label input[type="radio"] + .cr > .cr-icon {
+    transform: scale(3) rotateZ(-20deg)!important;
+    opacity: 0!important;
+    transition: all .3s ease-in!important;
+}
+
+.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon,
+.radio label input[type="radio"]:checked + .cr > .cr-icon {
+    transform: scale(1) rotateZ(0deg)!important;
+    opacity: 1!important;
+}
+
+.checkbox label input[type="checkbox"]:disabled + .cr,
+.radio label input[type="radio"]:disabled + .cr {
+    opacity: .5!important;
+}

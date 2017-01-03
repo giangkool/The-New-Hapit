@@ -1,0 +1,1130 @@
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/loader-style.css">
+<link rel="stylesheet" href="assets/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="assets/js/progress-bar/number-pb.css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/0.3.7/awesome-bootstrap-checkbox.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/0.3.7/awesome-bootstrap-checkbox.css">-->
+<link rel="stylesheet" href="assets/css/checkbox.css">
+<link rel="stylesheet" href="assets/js/tag/jquery.tagsinput.css">
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/js/timepicker/bootstrap-timepicker.css">
+<link rel="stylesheet" href="assets/js/datepicker/datepicker.css">
+<link rel="stylesheet" href="assets/js/datepicker/clockface.css">
+<link rel="stylesheet" href="assets/js/datepicker/bootstrap-datetimepicker.css">
+<link rel="stylesheet" href="assets/css/hover.css">
+
+<link rel="stylesheet" href="assets/css/social.css">
+<link rel="stylesheet" href="assets/css/media.css">
+<link rel="stylesheet" href="assets/css/agency.css">
+<link rel="stylesheet" href="assets/css/w3.css">
+
+
+<style type="text/css">
+    canvas#canvas4 {
+        position: relative;
+        top: 20px;
+    }
+
+    .anx:focus {
+        color: black !important;
+    }
+</style>
+
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status">&nbsp;</div>
+</div>
+<!-- TOP NAVBAR -->
+<nav role="navigation" class="navbar navbar-static-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" class="navbar-toggle" type="button">
+                    <span class="entypo-menu"></span>
+                </button>
+            <button class="navbar-toggle toggle-menu-mobile toggle-left" type="button">
+                    <span class="entypo-list-add"></span>
+                </button>
+
+
+
+
+            <div id="logo-mobile" class="visible-xs">
+                <h1>Hapit
+                    <span>v1.0</span>
+                </h1>
+            </div>
+
+        </div>
+
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+            <div id="nt-title-container" class="navbar-left running-text visible-lg">
+                <ul class="date-top">
+                    <li class="entypo-calendar" style="margin-right:5px"></li>
+                    <li>{{date | date:'EEE, dd-MM-yyyy'}}</li>
+                </ul>
+
+                <ul id="digital-clock" class="digital">
+                    <li class="entypo-clock" style="margin-right:5px"></li>
+                    <li>{{clock | date:'mediumTime'}}</li>
+                </ul>
+                <ul id="nt-title">
+                    <li>
+                        <i class="glyphicon glyphicon-user"></i> Hello
+                        <b>{{Auth.Fullname}}</b>
+                    </li>
+                    <li>
+                        <i class="glyphicon glyphicon-certificate"></i>have a nice day for you !
+                    </li>
+
+                </ul>
+            </div>
+            <ul style="margin-right:0;" class="nav navbar-nav navbar-right">
+                <li>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="">
+                        <img alt="" class="admin-pic img-circle" src="http://api.randomuser.me/portraits/thumb/men/10.jpg">Hi,
+                        {{Auth.Fullname}}</b>
+                    </a>
+                     <ul style="margin-top:14px;" role="menu" class="dropdown-setting dropdown-menu">
+                            <!--<li>
+                                <a href="" >
+                                    <span class="entypo-user"></span>&#160;&#160;My Profile</a>
+                            </li>-->
+
+                            <li>
+                                <a href="" ng-click="change_account()">
+                                    <span class="entypo-vcard"></span>&#160;&#160;Account Setting</a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <span class="entypo-lifebuoy"></span>&#160;&#160;Help</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="" ng-click="logout()">
+                                    <span class="entypo-logout"></span>&#160;&#160;Logout</a>
+                            </li>
+                        </ul>
+                </li>
+                <li>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="">
+                            <span class="icon-gear"></span>&#160;&#160;Setting</a>
+                        <ul role="menu" class="dropdown-setting dropdown-menu">
+
+                            <li class="theme-bg">
+                                <div id="button-bg"></div>
+                                <div id="button-bg2"></div>
+                                <div id="button-bg3"></div>
+                                <div id="button-bg5"></div>
+                                <div id="button-bg6"></div>
+                                <div id="button-bg7"></div>
+                                <div id="button-bg8"></div>
+                                <div id="button-bg9"></div>
+                                <div id="button-bg10"></div>
+                                <div id="button-bg11"></div>
+                                <div id="button-bg12"></div>
+                                <div id="button-bg13"></div>
+                            </li>
+                        </ul>
+                    </li>
+
+            </ul>
+
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<!-- /END OF TOP NAVBAR -->
+
+<!-- SIDE MENU -->
+<div id="skin-select">
+    <div id="logo" style="cursor:pointer" ng-click="linkhome()">
+        <h1>HapTask
+            <span>v 1.0</span>
+        </h1>
+    </div>
+
+    <a id="toggle">
+        <span class="entypo-menu"></span>
+    </a>
+    <div class="dark">
+        <form action="#">
+            <span>
+                    <input type="text" name="search" value="" class="search rounded id_search" placeholder="Search Menu..." autofocus />
+                </span>
+        </form>
+    </div>
+
+    <div class="search-hover">
+        <form id="demo-2">
+            <input type="search" placeholder="Search Menu..." class="id_search">
+        </form>
+    </div>
+
+
+
+
+    <div class="skin-part">
+        <div id="tree-wrap">
+            <div class="side-bar">
+                <ul class="topnav menu-left-nest">
+                    <li>
+                        <a href="" style="border-left:0px solid!important;" class="title-menu-left">
+                            <span>Menu Task</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a ng-click="createtask()" style="cursor:pointer" title="Blog App">
+                            <i class="icon-document-edit"></i>
+                            <span>Create New Task</span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a class="tooltip-tip ajax-load" href="">
+                            <i class="glyphicon glyphicon-user"></i>
+                            <span>My Task</span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a class="tooltip-tip ajax-load" style="cursor : pointer">
+                            <i class="glyphicon glyphicon-list"></i>
+                            <span>List Task</span>
+
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" style="cursor:pointer" ng-click="showtask()"><i class="entypo-doc-text"></i><span>All Task </span></a>
+                            </li>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="" title="Blog Detail"><i class="entypo-newspaper"></i><span>Completed</span></a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END OF SIDE MENU -->
+
+
+
+<!--  PAPER WRAP -->
+<div class="wrap-fluid">
+    <div class="container-fluid paper-wrap bevel tlbr">
+
+
+        <!-- CONTENT -->
+
+
+        <!--TITLE -->
+        <div class="row">
+            <div id="paper-top">
+                <div class="col-sm-5" ng-show="showalltask">
+                    <h2 class="tittle-content-header">
+                        <i class="icon-window"></i>
+                        <span>All Task
+                            </span>
+                    </h2>
+                </div>
+
+                <div class="col-sm-5" ng-show="showcreate">
+                    <h2 class="tittle-content-header">
+                        <i class="icon icon-document-edit"></i>
+                        <span>Create New Task
+                            </span>
+                    </h2>
+                </div>
+                <div class="col-sm-5" ng-show="homepage">
+                    <h2 class="tittle-content-header">
+                        <i class="icon icon-document-edit"></i>
+                        <span>HOMEPAGE
+                            </span>
+                    </h2>
+                </div>
+
+                <div class="col-sm-5" ng-show="account">
+                    <h2 class="tittle-content-header">
+                        <i class="icon icon-document-edit"></i>
+                        <span>ACCOUNT SETTING
+                            </span>
+                    </h2>
+                </div>
+
+                <div class="col-sm-5" ng-show="showchange">
+                    <h2 class="tittle-content-header">
+                        <i class="entypo-key"></i>
+                        <span style="margin-left : 5px">Change Password
+                            </span>
+                    </h2>
+                </div>
+                <div class="col-sm-5" ng-show="showprofile">
+                    <h2 class="tittle-content-header">
+                        <i class="entypo-user"></i>
+                        <span style="margin-left : 5px">My Profile
+                            </span>
+                    </h2>
+                </div>
+                <div class="col-sm-5" ng-show="showupprofile">
+                    <h2 class="tittle-content-header">
+                        <i class="entypo-user"></i>
+                        <span style="margin-left : 5px">My Profile
+                            </span>
+                    </h2>
+                </div>
+
+
+                <div class="col-sm-7">
+                    <div class="devider-vertical visible-lg"></div>
+                    <div class="tittle-middle-header">
+
+                        <div class="alert">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <span class="tittle-alert entypo-info-circled"></span> Welcome back,&nbsp;
+                            <strong style="color: seagreen">Future Dev Team !</strong>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+        </div>
+
+        <!--/ TITLE -->
+
+        <!-- BREADCRUMB -->
+        <ul id="breadcrumb" style="border: none; background: transparent">
+        </ul>
+            <!--ACCOUNT-->
+
+        <div class="content-wrap" ng-show="account">
+            <div class="row">
+                <div class="col-md-12" style="margin-left : 50px;">
+                    <button type="button" class="btn btn-default">
+                <div  class="entypo-key koata" ng-click="changepw()"  style="font-size : 20px;" title="" data-original-title="key">
+                    <span style="margin-left:10px">Change Password</span>
+
+                </div>
+                    </button>
+
+                </div>
+
+                <div class="col-md-12" style="margin-left : 50px;margin-top: 20px">
+                    <button type="button" class="btn btn-default">
+                <div  class="entypo-user" ng-click="profile()"  style="font-size : 20px;" title="" data-original-title="key">
+                    <span style="margin-left:10px">My Profile</span>
+
+                </div>
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+            <!--CHANGE PASSWORD-->
+        <div class="content-wrap" ng-show="showchange">
+            <div class="row" style="margin-top : 30px">
+                <form class="form-inline">
+                <div class="col-md-12">
+                    <label for="inputTask" style="font-size : 15px;margin-right:45px;">Old Password</label>
+                    <input type="password" style="min-width : 300px" ng-model="pw.old" class="form-control valid anx">
+                </div>
+                 <div class="col-md-12" style="margin-top : 10px">
+                    <label for="inputTask" style="font-size : 15px;margin-right:37px;">New Password</label>
+                    <input type="password" style="min-width : 300px" ng-model="pw.new" class="form-control valid anx">
+                </div>
+                <div class="col-md-12" style="margin-top : 10px">
+                    <label for="inputTask" style="font-size : 15px;margin-right:10px;">Confirm Password</label>
+                    <input type="password" style="min-width : 300px" ng-model="pw.confirm" class="form-control valid anx">
+                </div>
+                     <button type="button" style="margin-top : 10px" ng-click="save_change(pw)" class="btn btn-default col-md-offset-4">
+                         Save
+                     </button>
+                      <button type="button" style="margin-top : 10px;margin-left :10px" class="btn btn-default">
+                         Cancel
+                     </button>
+                </form>
+            </div>
+        </div>
+            <!--MY Profile-->
+        <div class="content-wrap" ng-show="showprofile">
+                        <div class="well profile">
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-4 text-center">
+                                     <img src="http://api.randomuser.me/portraits/men/10.jpg" alt="" class="img-circle img-responsive img-profile"style="margin:auto;">
+                                </div>
+                                <div class="col-xs-12 col-sm-8 profile-name">
+                                    <h2>{{Auth.Fullname}}
+                                    </h2>
+                                    <hr>
+
+                                    <dl class="dl-horizontal-profile">
+                                        <dt>Fullname</dt>
+                                        <dd>{{Auth.Fullname}} </dd>
+
+                                        <dt>Email</dt>
+                                        <dd>{{Auth.Email}}</dd>
+
+                                        <dt>Mobile</dt>
+                                        <dd>{{Auth.Mobile}}</dd>
+
+                                        <dt>Day of birth</dt>
+                                        <dd>{{Auth.Birthday}}</dd>
+
+                                        <dt>Address</dt>
+                                        <dd>{{Auth.Address}}</dd>
+
+                                        <dt>Sex</dt>
+                                        <dd>{{Auth.Sex}}</dd>
+
+                                        <dt>Personal Id </dt>
+                                        <dd>{{Auth.PersonalId}}</dd>
+
+                                    </dl>
+                                    <div class="col-md-12" style="margin-left : 50px;">
+                                          <button type="button" class="btn btn-default">
+                                            <div  class="entypo-key" ng-click="updateprofile()"  style="font-size : 10px;" title="" data-original-title="key">
+                                              <span style="margin-left:10px">Edit</span>
+
+                                            </div>
+                                         </button>
+
+                                     </div>
+
+
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+        </div>
+        <!--update profile-->
+        <div class="content-wrap" ng-show="showupprofile">
+                        <div class="well profile">
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-4 text-center">
+                                     <img src="http://api.randomuser.me/portraits/men/10.jpg" alt="" class="img-circle img-responsive img-profile"style="margin:auto;">
+                                </div>
+                                <div class="col-xs-12 col-sm-8 profile-name">
+                                    <h2>Update Profile
+                                    </h2>
+                                    <hr>
+
+                                    <dl class="dl-horizontal-profile">
+                                        <dt>Fullname</dt>
+                                        <input type="text" style="min-width : 300px" ng-model="pf.name" class="form-control valid anx"placeholder="{{Auth.Fullname}}">
+
+                                        <dt>Mobile</dt>
+                                        <input type="text" style="min-width : 300px" ng-model="pf.mobile" class="form-control valid anx"placeholder="{{Auth.Mobile}}">
+
+                                        <dt>Day of birth</dt>
+                                        <input type="text" name="birthday" style="min-width : 300px" ng-model="pf.birthday" class="form-control valid anx" id="birthday" placeholder="dd/MM/yyyy">
+
+                                        <dt>Address</dt>
+                                        <input type="text" style="min-width : 300px" ng-model="pf.address" class="form-control valid anx"placeholder="{{Auth.Address}}">
+
+                                        <dt>Sex</dt>
+                                        <input type="text" style="min-width : 300px" ng-model="pf.sex" class="form-control valid anx"placeholder="{{Auth.Sex}}">
+
+                                        <dt>Personal Id </id>
+                                        <input type="text" style="min-width : 300px" ng-model="pf.personalId" class="form-control valid anx"placeholder="{{Auth.PersonalId}}">
+
+                                        <dt>Confirm Password</dt>
+                                        <input type="password" style="min-width : 300px" ng-model="pf.password" class="form-control valid anx">
+
+                                    </dl>
+                                    <button type="button" style="margin-top : 10px" ng-click="save_updateprofile(pf)" class="btn btn-default col-md-offset-4">Save</button>
+                                    <button type="button" style="margin-top : 10px;margin-left :10px"ng-click="profile()" class="btn btn-default">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+        </div>
+
+        <!--HOMEPAGE-->
+        <div class="<cont></cont>ent-wrap" ng-show="homepage">
+            <div class="row" style="margin-top:auto;padding:0 15px;">
+
+              <!-- HOMEPAGE CONTENT -->
+              <div class="blog-list-nest">
+                <!-- Header of homepage  -->
+                <header class="w3-container w3-center w3-padding-30">
+                  <h1 class="w3-jumbo w3-animate-top" style="color:black;">Welcome</h1>
+                  <hr class="w3-border-grey" style="margin:auto;width:40%;">
+                  <h6 style="color:black;">Easy Way To Get Stuff Done  Productively</h6>
+                </header>
+                <div class="blog-list-content">
+                    <h2>WELCOME</h2>
+                    <p>
+                        iPhone 7 dramatically improves the most important aspects of the iPhone experience. It introduces advanced new camera systems. The best performance and battery life ever in an iPhone. Immersive stereo speakers. The brightest, most colorful iPhone display.
+                        Splash and water resistance.1 And it looks every bit as powerful as it is. This is iPhone 7.
+                    </p>
+
+                    <!-- Column -->
+                    <div class="row text-center">
+                      <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                          <i class="fa fa-shopping-cart fa-stack-1x" style="color:#000000"></i>
+                        </span>
+                        <h4 class="service-heading">E-Commerce</h4>
+                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                      </div>
+                      <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                          <i class="fa fa-laptop fa-stack-1x" style="color:#000000"></i>
+                        </span>
+                        <h4 class="service-heading">Responsive Design</h4>
+                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                      </div>
+                      <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                          <i class="fa fa-lock fa-stack-1x" style="color:#000000"></i>
+                        </span>
+                        <h4 class="service-heading">Web Security</h4>
+                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                      </div>
+                    </div>
+                    <!--End of Column -->
+                </div>
+              </div>
+              <!--  END OF HOMEPAGE CONTENT -->
+            </div>
+        </div>
+        <!-- END OF HOMEPAGE -->
+
+        <!--  SHOW CREATE NEW TASK-->
+        <div class="content-wrap" ng-show="showcreate">
+            <div class="row">
+                <form role="form" id="task-form">
+                    <!--line add task 1-->
+                    <div class="line1 col-md-12">
+                        <div class="col-md-7 control-group">
+                            <label for="inputTask" style="display : block">Task Name</label>
+                            <input type="text" ng-model="rdata.username" name="nametask" style="max-width : 92%;display : table-row" id="inputRegisterEmail"
+                                class="form-control valid anx">
+                        </div>
+
+                        <div class="col-md-5 control-group">
+
+                            <label for="inputTask" style="display : block">Start Date</label>
+                            <div class="input-group">
+                                <div class="input-group-addon" style="background-color: #F5F5F5!important;border: 1px solid #ccc !important;">
+                                    <i class="icon icon-calendar"></i>
+                                </div>
+                                <input type="text" name="startdate" style="border: 1px solid #ccc !important;color: black !important;max-width : 91%;display : table-row"
+                                    class="form-control" id="dp1" placeholder="mm/dd/yyyy">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--line add task 2-->
+                    <div class="line2 col-md-12" style="margin-top : 10px">
+                        <div class="col-md-7 control-group">
+                            <label for="inputTask" style="display : block">Discription</label>
+                            <textarea class="form-control valid anx" style="max-width : 92%;display : table-row;" rows="4" name="description"></textarea>
+
+
+                            <div class="col-md-12 " style="padding-left :0;margin-top:5px;display : block">
+                                <div class="col-md-5" style="padding-left : 0">
+                                    <label for="inputTask" style="display : block">Privacy</label>
+                                    <select id="selectbasic" name="selectbasic" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important"
+                                        class="form-control">
+                                    <option value="1" style="color : black !important"><i class="icon icon-lock"></i>Public</option>
+                                    <option class="icon icon-lock" value="2" style="color : black !important">Private</option>
+                                </select>
+                                </div>
+
+                                <div class="col-md-5 " style="padding-left : 0;display : block">
+                                    <label for="inputTask" style="padding-left : 0;display : block">Priority</label>
+                                    <select id="selectbasic" name="selectbasic" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important"
+                                        class="form-control">
+                                    <option value="1" style="color : black !important">None</option>
+                                    <option value="2" style="color : black !important">Normal</option>
+                                    <option value="2" style="color : black !important">Important</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-md-5 control-group">
+                            <label for="inputTask" style="display : block">Due Date</label>
+                            <div class="input-group">
+                                <div class="input-group-addon" style="background-color: #F5F5F5!important;border: 1px solid #ccc !important;">
+                                    <i class="icon icon-calendar"></i>
+                                </div>
+                                <input type="text" name="duedate" style="border: 1px solid #ccc !important;color: black !important;max-width : 91%;display : table-row"
+                                    class="form-control" id="dp2" placeholder="mm/dd/yyyy">
+                            </div>
+                            <div class="col-md-12 control-group" style="padding-left : 0;margin-top : 10px;padding-right : 0">
+                                <label for="inputTask">Assigned Users</label>
+                                <input id="tags_2" type="text" style="" class="form-control tags " value="example,hapIT" />
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <!--line add task 4-->
+
+                    <div class="col-md-12 control-group" style="margin-left: 15px;margin-top: 10px;max-width:96%">
+                        <div class="col-md-7" style="padding-left : 0">
+                            <label for="inputTask" style="display : block">Tags</label>
+                            <input id="tags_1" type="text" style="" class="form-control tags" value="example,hapIT,FutureDev" />
+                        </div>
+
+                    </div>
+                    <!--button-->
+                    <div class="col-md-12 col-md-offset-9 " style="margin-top:15px">
+
+                        <div class="col-md-6" style="max-width:10%">
+
+                            <button type="button" id="nut1" class="btn btn-primary btn-responsive" style="width:90px;">
+                                    <span class="entypo-plus-squared"></span>&nbsp;&nbsp;Add</button>
+                        </div>
+
+
+                        <div class="col-md-5 " style="max-width:10%">
+
+                            <button type="button" id="nut2" data-toggle="modal" data-target="#myModal" class="btn btn-danger">
+                                    <span class="entypo-cancel-squared"></span>&nbsp;&nbsp;Cancel</button>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content" style="margin-top : 80px">
+                                    <center>
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title" col-md-12>CONFIRM</h4>
+                                        </div>
+                                    </center>
+                                    <div class="modal-body">
+                                        <center style="color:black;font-size : 20px">Are you sure to cancel this task ?</center>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Yes</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </form>
+            </div>
+        </div>
+
+
+        <!-- SHOW ALL TASK-->
+        <div class="content-wrap" ng-show="showalltask">
+            <div class="row">
+
+                <div class="col-sm-3 cot1">
+
+                    <div ng-style="myStyle" class="profit" id="profitClose">
+
+                        <div class="headline ">
+
+                            <h3>
+                                <span class="col-md-9"  data-target="#myModal1" data-toggle="modal">
+                                <i class="maki-ferry"></i>&#160;&#160;Name Task</span>
+                                 <div class="checkbox col-md-3" style="z-index:50; float:right" >
+                                    <label style="font-size: 1.5em">
+                                        <input type="checkbox" ng-click="check()" ng-model="checkboxModel.value">
+                                        <span class="cr"><i style="margin-left: -1px;"class="cr-icon fa fa-check"></i></span>
+                                    </label>
+                                </div>
+                            </h3>
+                            <div class="titleClose">
+                                <a href="#profitClose" class="gone">
+
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="value"  data-target="#myModal1" data-toggle="modal">
+
+                            <span class="pull-left"><i class="entypo-clock clock-position"></i>
+                                </span>
+                            <div id="getting-started">
+                                <span class="col-md-3" id="datecounter"></span>
+
+                                <span style="font-size : 30px">days</span>
+                            </div>
+
+
+                        </div>
+
+                        <div class="progress-tinny">
+                            <div style="width: 50%" class="bar"></div>
+                        </div>
+                        <div class="profit-line">
+                            <i class="icon icon-star"></i>&#160;&#160;HapIT Team
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+
+                <!-- Modal -->
+                <div id="myModal1" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <center>
+                                    <h4 class="modal-title">Name Task</h4>
+                                </center>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+
+                                    <center><label>From</label>
+                                        <span style="margin-left : 10px"><input type="text" name="startdate" style=" border: 1px solid #ccc !important;color: black !important;max-width : 30%;display : table-row"
+                                    class="form-control showform1" id="dp3" placeholder="25/05/1997"></span>
+                                        <span style="margin-left:20px"><label>To</label></span>
+                                        <span style="margin-left : 10px"><input type="text" name="startdate" style="border: 1px solid #ccc !important;color: black !important;max-width : 30%;display : table-row"
+                                    class="form-control showform1" id="dp4" placeholder="25/05/1997"></span>
+                                    </center>
+
+                                    <div class="col-md-12" style="margin-left:50px;margin-top:10px">
+                                        <label>Description</label>
+                                        <textarea class="form-control valid anx" style="max-width : 84%;" rows="4" name="description"></textarea>
+                                    </div>
+
+                                    <div class="col-md-4" ng-click="viewmore()" ng-show="morehide">
+                                        <p class="showmore" style="cursor:pointer;margin-left : 50px;margin-top:10px">Show more</p>
+                                    </div>
+                                    <div class="col-md-4" ng-click="hidemore()" ng-show="hide">
+                                        <p class="showmore" style="cursor:pointer;margin-left : 50px;margin-top:10px">Hide more</p>
+                                    </div>
+                                    <div class="col-md-10" style="margin-left : 50px" ng-show="more">
+                                        <div class="col-md-12  cokk" style="padding-left :0;margin-top:5px;margin-bottom : 10px">
+                                            <div class="col-md-5" style="padding-left : 0">
+                                                <label for="inputTask" style="display : block">Privacy</label>
+                                                <select id="selectbasic" name="selectbasic" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important"
+                                                    class="form-control">
+                                                                            <option value="1" style="color : black !important"><i class="icon icon-lock"></i>Public</option>
+                                                                            <option class="icon icon-lock" value="2" style="color : black !important">Private</option>
+                                                                        </select>
+                                            </div>
+
+                                            <div class="col-md-5" style="padding-left : 0;">
+                                                <label for="inputTask" style="padding-left : 0;">Priority</label>
+                                                <select id="selectbasic" name="selectbasic" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important"
+                                                    class="form-control">
+                                                                <option value="1" style="color : black !important">None</option>
+                                                                <option value="2" style="color : black !important">Normal</option>
+                                                                <option value="2" style="color : black !important">Important</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="control1" style="padding-left : 0;margin-top : 10px;padding-right : 0">
+                                            <label for="inputTask">Assigned Users</label>
+                                            <input id="tags_4" type="text" style="" class="form-control tags " value="example,hapIT" />
+                                        </div>
+
+                                        <div class="coltrol2" style="padding-left : 0;margin-top : 10px">
+                                            <label for="inputTask" style="display : block">Tags</label>
+                                            <input id="tags_3" type="text" style="height:20px" class="form-control tags" value="example,hapIT,FutureDev" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="border:none!important">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
+                <!--<div class="col-sm-3">
+                    <div class="revenue" id="revenueClose">-->
+                        <!--<div class="headline ">
+
+                            <h3>
+                                <span>
+                                        <i class="maki-aboveground-rail"></i>&#160;&#160;Train Speed</span>
+                            </h3>
+
+                            <div class="titleClose">
+                                <a href="#revenueClose" class="gone">
+                                    <span class="entypo-cancel"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="value">
+                            <span class="pull-left"><i class="entypo-gauge gauge-position"></i>
+                                </span>
+                            <canvas id="canvas4" width="70" height="70"></canvas>
+                            <i class="pull-right">/Km</i>
+
+                        </div>-->
+
+                        <!--<div class="progress-tinny">
+                            <div style="width: 25%" class="bar"></div>
+                        </div>
+                        <div class="profit-line">
+                            <i class="icon icon-star"></i>&#160;&#160;HapIT Team
+                        </div>-->
+                    <!--</div>
+                </div>-->
+
+
+                <!--<div class="col-sm-3">
+                    <div class="order" id="orderClose">
+                        <div class="headline ">
+                            <h3>
+                                <span>
+                                        <i class="maki-airport"></i>&#160;&#160;AIR PORT TRAFFIC</span>
+                            </h3>
+                            <div class="titleClose">
+                                <a href="#orderClose" class="gone">
+                                    <span class="entypo-cancel"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="value">
+                            <span><i class="fa fa-plane fa-2x"></i>
+                                </span><b id="speed"></b><b>Take Off</b>
+
+                        </div>
+
+                        <div class="progress-tinny">
+                            <div style="width: 10%" class="bar"></div>
+                        </div>
+                        <div class="profit-line">
+                            <i class="fa fa-caret-down fa-lg"></i>&#160;&#160;Rate : 20 Plane/Hour</div>
+                    </div>
+                </div>-->
+
+                <!--<div class="col-sm-3">
+                    <div class=" member" id="memberClose">
+                        <div class="headline ">
+                            <h3>
+                                <span>
+                                        <i class="fa fa-truck"></i>
+                                        &#160;&#160;CARGO
+                                    </span>
+                            </h3>
+                            <div class="titleClose">
+                                <a href="#memberClose" class="gone">
+                                    <span class="entypo-cancel"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="value">
+                            <span><i class="maki-warehouse"></i>
+                                </span>45<b>Sent</b>
+
+                        </div>
+                        <div class="progress-tinny">
+                            <div style="width: 50%" class="bar"></div>
+                        </div>
+                        <div class="profit-line">
+                            <span class="entypo-down-circled"></span>&#160;50% From Last Month</div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+        <!--  / DEVICE MANAGER -->
+
+        <div class="content-wrap">
+            <div class="row" hidden>
+                <div class="col-sm-6">
+                    <div class="chart-wrap">
+                        <div class="chart-dash">
+
+                            <div id="placeholder" style="width:100%;height:200px;"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            <!-- /END OF CONTENT -->
+
+            <!-- FOOTER -->
+            <div class="footer-space"></div>
+            <div id="footer">
+                <div class="devider-footer-left"></div>
+                <div class="time">
+                    <p id="spanDate"></p>
+                    <p id="clock"></p>
+                </div>
+                <div class="copyright">Make with <b style="color: seagreen">HapIT</b> team
+                    <span class="entypo-heart" style="color: red"></span> 2016 All Rights Reserved</div>
+                <div class="devider-footer"></div>
+
+            </div>
+
+
+        </div>
+    </div>
+    
+    <!--  END OF PAPER WRAP -->
+
+ <div class="footer-space"></div>
+            <div id="footer">
+                <div class="devider-footer-left"></div>
+                <div class="time">
+                    <p id="spanDate"></p>
+                    <p id="clock"></p>
+                </div>
+                <div class="copyright">Make with <b style="color: seagreen">HapIT</b> team
+                    <span class="entypo-heart" style="color: red"></span> 2016 All Rights Reserved</div>
+                <div class="devider-footer"></div>
+
+            </div>
+
+
+
+
+    <!-- MAIN EFFECT -->
+    <script type="text/javascript" src="assets/js/preloader.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+    <script type="text/javascript" src="assets/js/app.js"></script>
+    <script type="text/javascript" src="assets/js/load.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+
+
+    <!-- GAGE -->
+
+
+    <script type="text/javascript" src="assets/js/chart/jquery.flot.js"></script>
+    <script type="text/javascript" src="assets/js/chart/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="assets/js/chart/realTime.js"></script>
+    <script type="text/javascript" src="assets/js/speed/canvasgauge-coustom.js"></script>
+    <script type="text/javascript" src="assets/js/countdown/jquery.countdown.js"></script>
+    <script src="assets/js/jhere-custom.js"></script>
+    <script src="assets/js/tag/jquery.tagsinput.js"></script>
+    <script src="assets/js/tag/jquery.tagsinput.min.js"></script>
+    <!--<script>
+    var gauge4 = new Gauge("canvas4", {
+        'mode': 'needle',
+        'range': {
+            'min': 0,
+            'max': 90
+        }
+    });
+    gauge4.draw(Math.floor(Math.random() * 90));
+    var run = setInterval(function() {
+        gauge4.draw(Math.floor(Math.random() * 90));
+    }, 3500);
+    </script>-->
+     
+    <script type="text/javascript">
+
+
+    $('#task-form').validate({
+            rules: {
+                nametask: {
+                    required: true
+                },
+                startdate: {
+                    required : true
+                },
+                duedate :{
+                    required : true
+                },
+
+            },
+            highlight: function(element) {
+                $(element).closest('.control-group').removeClass('success').addClass('error');
+            },
+            success: function(element) {
+                element
+                    .text('OK!').addClass('valid')
+                    .closest('.control-group').removeClass('error').addClass('success');
+            }
+        });
+    /* Javascript
+     *
+     * See http://jhere.net/docs.html for full documentation
+     */
+    $(window).on('load', function() {
+        $('#mapContainer').jHERE({
+            center: [52.500556, 13.398889],
+            type: 'smart',
+            zoom: 10
+        }).jHERE('marker', [52.500556, 13.338889], {
+            icon: 'assets/img/marker.png',
+            anchor: {
+                x: 12,
+                y: 32
+            },
+            click: function() {
+                alert('Hallo from Berlin!');
+            }
+        })
+            .jHERE('route', [52.711, 13.011], [52.514, 13.453], {
+                color: '#FFA200',
+                marker: {
+                    fill: '#86c440',
+                    text: '#'
+                }
+            });
+    });
+    </script>
+
+    <script type="text/javascript">
+    var output, started, duration, desired;
+
+    // Constants
+    duration = 5000;
+    desired = '50';
+
+    // Initial setup
+    output = $('#speed');
+    started = new Date().getTime();
+
+    // Animate!
+    animationTimer = setInterval(function() {
+        // If the value is what we want, stop animating
+        // or if the duration has been exceeded, stop animating
+        if (output.text().trim() === desired || new Date().getTime() - started > duration) {
+            console.log('animating');
+            // Generate a random string to use for the next animation step
+            output.text('' + Math.floor(Math.random() * 60)
+
+            );
+
+        } else {
+            console.log('animating');
+            // Generate a random string to use for the next animation step
+            output.text('' + Math.floor(Math.random() * 120)
+
+            );
+        }
+    }, 5000);
+    </script>
+    <!--<script type="text/javascript">
+    $('#getting-started').countdown('2017/01/01', function(event) {
+        $(this).html(event.strftime(
+
+            '<span>%M</span>' + '<span class="start-min">:</span>' + '<span class="start-min">%S</span>'));
+    });
+    </script>-->
+
+    <!--Input Tags-->
+    <script type="text/javascript">
+    function onAddTag(tag) {
+        alert("Added a tag: " + tag);
+    }
+
+    function onRemoveTag(tag) {
+        alert("Removed a tag: " + tag);
+    }
+
+    function onChangeTag(input, tag) {
+        alert("Changed a tag: " + tag);
+    }
+
+    $(function() {
+
+        $('#tags_1').tagsInput({
+            width: 'auto'
+        });
+          $('#tags_3').tagsInput({
+            width: 'auto',
+            height : '70px'
+        });
+          $('#tags_4').tagsInput({
+            width: '468px',
+            height :'50px'
+        });
+        $('#tags_2').tagsInput({
+            defaultText:'add a user',
+            width: '',
+            height :'70px',
+
+            onChange: function(elem, elem_tags) {
+                var languages = ['php', 'ruby', 'javascript'];
+                $('.tag', elem_tags).each(function() {
+                    if ($(this).text().search(new RegExp('\\b(' + languages.join('|') + ')\\b')) >= 0)
+                        $(this).css('background-color', 'red');
+                });
+            }
+        });
+
+
+        // Uncomment this line to see the callback functions in action
+        //          $('input.tags').tagsInput({onAddTag:onAddTag,onRemoveTag:onRemoveTag,onChange: onChangeTag});
+
+        // Uncomment this line to see an input with no interface for adding new tags.
+        //          $('input.tags').tagsInput({interactive:false});
+    });
+    </script>
+    <!--Pick date-->
+    <script type="text/javascript">
+    $('#datetimepicker1').datetimepicker({
+        language: 'pt-BR'
+    });
+    $('#dp1').datepicker()
+    $('#dp2').datepicker()
+    $('#dp3').datepicker()
+    $('#dp4').datepicker()
+    $('#birthday').datepicker({
+        format: 'dd/mm/yyyy'
+    });
+    $('#dpYears').datepicker();
+    $('#timepicker1').timepicker();
+    $('#t1').clockface();
+    $('#t2').clockface({
+        format: 'HH:mm',
+        trigger: 'manual'
+    });
+
+    $('#toggle-btn').click(function(e) {
+        e.stopPropagation();
+        $('#t2').clockface('toggle');
+    });
+    </script>
+
+    <!--Count date left-->
+    <script type="text/javascript">
+    today = new Date();
+    BigDay = new Date("12 30, 2016");
+    msPerDay = 24 * 60 * 60 * 1000 ;
+    timeLeft = (BigDay.getTime() - today.getTime());
+    e_daysLeft = timeLeft / msPerDay ;
+    daysLeft = Math.floor(e_daysLeft) + 1;
+    e_hrsLeft = (e_daysLeft - daysLeft)*24;
+    hrsLeft = Math.floor(e_hrsLeft);
+    minsLeft = Math.floor((e_hrsLeft - hrsLeft)*60);
+    document.getElementById("datecounter").innerHTML = daysLeft;
+</script>
+    <!--switch-->
