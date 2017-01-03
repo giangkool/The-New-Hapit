@@ -450,7 +450,8 @@
 
                                         <dt>Confirm Password</dt>
                                         <input type="password" style="min-width : 300px" ng-model="pf.password" class="form-control valid anx">
-
+                                        <h6 ng-show="wrongpass" style="color:red">Error! Your password is wrong!</h6>
+                                        <h6 ng-show="warn" style="color:red">Error! Fill the confirm password!</h6>
                                     </dl>
                                     <button type="button" style="margin-top : 10px" ng-click="save_updateprofile(pf)" class="btn btn-default col-md-offset-4">Save</button>
                                     <button type="button" style="margin-top : 10px;margin-left :10px"ng-click="profile()" class="btn btn-default">Cancel</button>

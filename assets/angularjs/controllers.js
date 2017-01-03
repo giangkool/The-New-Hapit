@@ -230,8 +230,13 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
             
         }
         $scope.save_updateprofile=function(pf){
-            if(!pf||pf.password=="") $scope.nullpass=true;else {
+            if(!pf||pf.password=="") 
+            {$scope.nullpass=true;
+                $scope.warn=true;    
+            }else {
+                $scope.warn=false;
                 $scope.nullpass=false;
+                
             var rsa_pw = md5.createHash(pf.password);
             var birthday = $('#birthday').val();
             if (!pf.name) pf.name=$scope.Auth.Fullname;
