@@ -28,5 +28,27 @@ angular.module('webtab.Service', [])
                 url = pro_api_gateway_url+ 'UpdateProfile?';
                 return $http.post(url + parameter);
             }
+                
      }
 })
+
+.factory('TaskService', function ($http) {
+        // var dev_api_gateway_url ='http://localhost:56173/Auth/hapit/';
+        var pro_api_gateway_url ='http://210.211.116.19:2111/Task/hapit/';
+        var parameter;
+        var url;
+        var contents = [];
+        return{
+                postCreate : function (email, task_name, discription, privacy, priority, tags, assigned_users, start_date, due_date) {
+                parameter ='&email='+email + '&task_name='+task_name +'&discription='+discription+ '&privacy=' + privacy+'&priority=' +priority+'&tags='+tags +'&assigned_users='+assigned_users+'&start_date='+start_date+'&due_date='+due_date;
+                url = pro_api_gateway_url +'Create?';
+                return $http.post(url + parameter);  
+            },
+                postGetAll : function (email) {
+                parameter ='&email='+email;
+                url = pro_api_gateway_url +'GetAll?';
+                return $http.get(url + parameter);
+                }
+     }
+})
+

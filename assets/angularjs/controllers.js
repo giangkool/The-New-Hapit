@@ -1,6 +1,6 @@
 var webtabcontroller = angular.module('webtab.controller', ['ngRoute','ngStorage','geolocation','angular-md5','webtab.Service']);
 
-webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localStorage, $timeout,apiService) {
+webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localStorage, $timeout,apiService,TaskService) {
     var auth = window.localStorage.getItem('auth');
     $scope.Auth = JSON.parse(auth);
     console.log(auth[0].Fullname);
@@ -45,6 +45,10 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
             $scope.showchange=false;
             $scope.showprofile=false;
             $scope.showupprofile=false;
+            TaskService.postGetAll($scope.Auth.Email).then(function(response){
+                console.log(response.data);
+            })
+           
         }
         //button cancel
         $scope.cancel = function(){
@@ -161,7 +165,7 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
 
         //button save change password
         $scope.save_change=function(pw){
-            console.log('aaaaaaaaaa');
+           
             //check empty old password
             if ($scope.pw.old == "")
             {
@@ -229,6 +233,21 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
             
             
         }
+        $scope.nt=[];
+        $scope.nt.taskname="";
+        $scope.add_newtask=function(nt){
+            if($scope.nt.taskname!="")
+            {
+                var startdate=$('#dp1').val();
+                var duedate=$('#dp2').val();
+                var assigned=$('#tags_2').val();
+                var duedate=$('#tags_1').val();
+                TaskService.postCreate($scope.Auth.Email,nt.taskname,nt.discription,nt.privacy,nt.priority,nt.tags,nt.assigned,startdate,duedate).then(function(response){
+                    console.log(response.data);
+                })
+            }
+        }
+
         $scope.save_updateprofile=function(pf){
             if(!pf||pf.password=="") 
             {$scope.nullpass=true;

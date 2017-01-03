@@ -519,7 +519,7 @@
                     <div class="line1 col-md-12">
                         <div class="col-md-7 control-group">
                             <label for="inputTask" style="display : block">Task Name</label>
-                            <input type="text" ng-model="rdata.username" name="nametask" style="max-width : 92%;display : table-row" id="inputRegisterEmail"
+                            <input type="text" ng-model="nt.taskname" name="nametask" style="max-width : 92%;display : table-row" id="inputRegisterEmail"
                                 class="form-control valid anx">
                         </div>
 
@@ -530,7 +530,7 @@
                                 <div class="input-group-addon" style="background-color: #F5F5F5!important;border: 1px solid #ccc !important;">
                                     <i class="icon icon-calendar"></i>
                                 </div>
-                                <input type="text" name="startdate" style="border: 1px solid #ccc !important;color: black !important;max-width : 91%;display : table-row"
+                                <input type="text" ng-model="nt.startdate" name="startdate" style="border: 1px solid #ccc !important;color: black !important;max-width : 91%;display : table-row"
                                     class="form-control" id="dp1" placeholder="mm/dd/yyyy">
                             </div>
                         </div>
@@ -540,13 +540,13 @@
                     <div class="line2 col-md-12" style="margin-top : 10px">
                         <div class="col-md-7 control-group">
                             <label for="inputTask" style="display : block">Discription</label>
-                            <textarea class="form-control valid anx" style="max-width : 92%;display : table-row;" rows="4" name="description"></textarea>
+                            <textarea class="form-control valid anx" ng-model="nt.discription" style="max-width : 92%;display : table-row;" rows="4" name="description"></textarea>
 
 
                             <div class="col-md-12 " style="padding-left :0;margin-top:5px;display : block">
                                 <div class="col-md-5" style="padding-left : 0">
                                     <label for="inputTask" style="display : block">Privacy</label>
-                                    <select id="selectbasic" name="selectbasic" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important"
+                                    <select id="selectbasic" ng-model="nt.privacy" name="selectbasic" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important"
                                         class="form-control">
                                     <option value="1" style="color : black !important"><i class="icon icon-lock"></i>Public</option>
                                     <option class="icon icon-lock" value="2" style="color : black !important">Private</option>
@@ -555,11 +555,11 @@
 
                                 <div class="col-md-5 " style="padding-left : 0;display : block">
                                     <label for="inputTask" style="padding-left : 0;display : block">Priority</label>
-                                    <select id="selectbasic" name="selectbasic" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important"
+                                    <select id="selectbasic" ng-model="nt.priority" name="selectbasic" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important"
                                         class="form-control">
                                     <option value="1" style="color : black !important">None</option>
                                     <option value="2" style="color : black !important">Normal</option>
-                                    <option value="2" style="color : black !important">Important</option>
+                                    <option value="3" style="color : black !important">Important</option>
                                     </select>
                                 </div>
 
@@ -574,12 +574,12 @@
                                 <div class="input-group-addon" style="background-color: #F5F5F5!important;border: 1px solid #ccc !important;">
                                     <i class="icon icon-calendar"></i>
                                 </div>
-                                <input type="text" name="duedate" style="border: 1px solid #ccc !important;color: black !important;max-width : 91%;display : table-row"
+                                <input type="text" ng-model="nt.duedate" name="duedate" style="border: 1px solid #ccc !important;color: black !important;max-width : 91%;display : table-row"
                                     class="form-control" id="dp2" placeholder="mm/dd/yyyy">
                             </div>
                             <div class="col-md-12 control-group" style="padding-left : 0;margin-top : 10px;padding-right : 0">
                                 <label for="inputTask">Assigned Users</label>
-                                <input id="tags_2" type="text" style="" class="form-control tags " value="example,hapIT" />
+                                <input id="tags_2" type="text" ng-model="nt.assigned" style="" class="form-control tags " value="example,hapIT" />
                             </div>
                         </div>
 
@@ -591,7 +591,7 @@
                     <div class="col-md-12 control-group" style="margin-left: 15px;margin-top: 10px;max-width:96%">
                         <div class="col-md-7" style="padding-left : 0">
                             <label for="inputTask" style="display : block">Tags</label>
-                            <input id="tags_1" type="text" style="" class="form-control tags" value="example,hapIT,FutureDev" />
+                            <input id="tags_1" type="text" ng-model="nt.tags" style="" class="form-control tags" value="example,hapIT,FutureDev" />
                         </div>
 
                     </div>
@@ -600,7 +600,7 @@
 
                         <div class="col-md-6" style="max-width:10%">
 
-                            <button type="button" id="nut1" class="btn btn-primary btn-responsive" style="width:90px;background-color:#428BCA">
+                            <button type="button" id="nut1" ng-click="add_newtask(nt)" class="btn btn-primary btn-responsive" style="width:90px;background-color:#428BCA">
                                     <span class="entypo-plus-squared"></span>&nbsp;&nbsp;Add</button>
                         </div>
 
@@ -1100,8 +1100,14 @@
     $('#datetimepicker1').datetimepicker({
         language: 'pt-BR'
     });
-    $('#dp1').datepicker()
-    $('#dp2').datepicker()
+    // $('#dp1').datepicker({ 
+    // })
+    $('#dp1').datepicker({format: 'dd/mm/yyyy'  }).on('changeDate', function(ev){               
+    $('#dp1').datepicker('hide');
+    });
+    $('#dp2').datepicker({format: 'dd/mm/yyyy'  }).on('changeDate', function(ev){               
+    $('#dp2').datepicker('hide');
+    });
     $('#dp3').datepicker()
     $('#dp4').datepicker()
     $('#birthday').datepicker({
