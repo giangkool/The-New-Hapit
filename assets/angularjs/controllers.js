@@ -241,8 +241,9 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
                 var startdate=$('#dp1').val();
                 var duedate=$('#dp2').val();
                 var assigned=$('#tags_2').val();
-                var duedate=$('#tags_1').val();
-                TaskService.postCreate($scope.Auth.Email,nt.taskname,nt.discription,nt.privacy,nt.priority,nt.tags,nt.assigned,startdate,duedate).then(function(response){
+                var tags=$('#tags_1').val();
+                
+                TaskService.postCreate($scope.Auth.Email,nt.taskname,nt.discription,nt.privacy,nt.priority,tags,assigned,startdate,duedate).then(function(response){
                     console.log(response.data);
                 })
             }
