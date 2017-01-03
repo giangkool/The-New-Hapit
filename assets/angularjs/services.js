@@ -28,5 +28,5 @@ angular.module('webtab.Service', [])
                 url = pro_api_gateway_url+ 'UpdateProfile?';
                 return $http.post(url + parameter);
             }
-        }
+     }
 })
