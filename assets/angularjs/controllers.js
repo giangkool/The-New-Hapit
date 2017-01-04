@@ -24,7 +24,7 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
             $timeout(tick, $scope.tickInterval);
         }
         $timeout(tick, $scope.tickInterval);
-        $scope.showalltask=true;
+        $scope.homepage=true;
         $scope.showcreate=false;
         //show create new task
         $scope.createtask=function(){
@@ -35,6 +35,15 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
             $scope.showchange=false;
             $scope.showprofile=false;
             $scope.showupprofile=false;
+        }
+        //show every task
+
+        $scope.getindex=function(xpa){
+            
+            for (var i=0;i<=$scope.getdata.length;i++){
+                if (xpa==i) $scope.getdata_every=$scope.getdata[i];  
+            }
+        
         }
         //show all task
         $scope.showtask=function(){
@@ -47,6 +56,8 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
             $scope.showupprofile=false;
             TaskService.postGetAll($scope.Auth.Email).then(function(response){
                 console.log(response.data);
+                $scope.getdata=response.data;
+                // document.getElementsByClassName("profit").style.color="green";
             })
            
         }
@@ -244,7 +255,9 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
                 var tags=$('#tags_1').val();
                 
                 TaskService.postCreate($scope.Auth.Email,nt.taskname,nt.discription,nt.privacy,nt.priority,tags,assigned,startdate,duedate).then(function(response){
-                    console.log(response.data);
+                    alert=("Completed");
+                    $scope.showcreate=false;
+                    $scope.homepage=true;
                 })
             }
         }
