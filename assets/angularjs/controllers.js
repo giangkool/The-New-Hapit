@@ -3,7 +3,7 @@ var webtabcontroller = angular.module('webtab.controller', ['ngRoute','ngStorage
 webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localStorage, $timeout,apiService,TaskService) {
     var auth = window.localStorage.getItem('auth');
     $scope.Auth = JSON.parse(auth);
-    console.log(auth[0].Fullname);
+    
      if (!auth) {
             window.location.href = '#/login';
             return;
@@ -82,7 +82,7 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
             window.href="#";
         }
         //show homepage
-        $scope.homepage=false;
+        
         $scope.linkhome=function(){
             $scope.homepage=true;
             $scope.showcreate=false;
@@ -357,14 +357,14 @@ webtabcontroller.controller('LoginCtrl', function($scope, $localStorage, geoloca
             $scope.islogin = true;
             $scope.isregister=false;
         }
-
+        
+            $scope.rdata=[];
+            $scope.rdata.username="";
         //get data from register form
          $scope.register = function(rdata){
 
-            $scope.rdata=[];
-            $scope.rdata.username="";
             console.log($scope.rdata.username);
-            if(rdata.username.length>6 && rdata.password.length>6 && rdata.fullname.length>6 && rdata.mobile.length>10)
+            if(rdata.username.length>=6 && rdata.password.length>=6 && rdata.fullname && rdata.mobile.length>=10)
             {            
 
                 var rsapassword =md5.createHash(rdata.password);
@@ -445,6 +445,7 @@ webtabcontroller.controller('LoginCtrl', function($scope, $localStorage, geoloca
 
             if (pw.new!=pw.confirm) {
                 $scope.error_confirmpw=true;
+                $scope.error_oldnew = false;
             }
             else if($scope.error_checklength==false){
              apiService.postChangePw($scope.data.username,rsa_oldpw,rsa_newpw).then(function (response) {
@@ -452,16 +453,26 @@ webtabcontroller.controller('LoginCtrl', function($scope, $localStorage, geoloca
                  if ($scope.result._error_code == '03')
                  {
                      $scope.error_oldpw=true;
+                     $scope.error_oldnew = false;
                  }
                  else {
                        $scope.error_oldpw=false;
                  }
                  if ($scope.result._error_code=='00'){
+                     $scope.error_oldnew = false;
+                     $scope.error_oldpw=false;
+                     $scope.error_confirmpw=false;
                      alert('Succesfull');
                      window.location.reload(true);
                      $scope.showchange=false;
                      $scope.account=true;
+                    
                      
+                 }
+                  if($scope.result._error_code =='05')
+                 {
+                   $scope.error_oldnew = true;
+                   $scope.OldNew = $scope.result._error_messenger;
                  }
 
                  $scope.error_confirmpw=false;

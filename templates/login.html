@@ -85,6 +85,7 @@
                             <label style="display : block">New Password</label>
                             <input type="password" ng-model="pw.new" style="max-width : 92%;display : table-row" id="" name="newpw" class="form-control valid">
                             <h5 ng-show="error_checklength" style="font-weight: bold;color: #FF0064;">New Password at least 6 characters. </h5>
+                            <h5 ng-show="error_oldnew" style="font-weight: bold;color: #FF0064;">{{OldNew}} </h5>
                             <h5 ng-show="error_checkempty_new" style="font-weight: bold;color: #FF0064;">This field is required.</h5>
                         </div>
                         <div class="control-group" style="margin-top : 5px">
@@ -170,7 +171,7 @@
 
                             <div class="modal-body">
                                 <div ng-show="registerok">
-                                    <strong>Success !</strong> Please login in <a ng-click="hide()" style="color:blue; cursor: pointer">here</a>
+                                    <strong>Success !</strong> Please login in <a ng-click="hide()" data-dismiss="modal" style="color:blue; cursor: pointer">here</a>
                                 </div>
                                 <div ng-show="registerfalse">
                                     <strong>Error !</strong> {{resultR._error_messenger}}
@@ -414,7 +415,7 @@
             $('#Register-form').validate({
                 rules: {
                     rname: {
-                        minlength: 6,
+                        
                         required: true
                     },
                     remail: {
