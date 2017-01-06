@@ -49,6 +49,7 @@ angular.module('webtab.Service', [])
                 url = pro_api_gateway_url +'GetAll?';
                 return $http.get(url + parameter);
                 },
+                
                 postUpdate : function (email, task_name, discription, privacy, priority, tags, assigned_users, start_date, due_date, status){
                 parameter ='&email='+email+'&task_name='+task_name+'&discription='+discription+'&privacy=' + privacy+'&priority='+priority+'&tags='+tags+'&assigned_users='+assigned_users+'&start_date='+start_date+'&due_date='+due_date+'&status='+status;
                 url=  pro_api_gateway_url +'Update?';
