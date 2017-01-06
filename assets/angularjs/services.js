@@ -27,7 +27,8 @@ angular.module('webtab.Service', [])
                 parameter ='&email='+ email + '&password='+ password +'&fullname='+fullname+ '&birthday='+ birthday +'&sex=' + sex +'&mobile=' + mobile +'&address=' + address +'&personalId=' +personalId;
                 url = pro_api_gateway_url+ 'UpdateProfile?';
                 return $http.post(url + parameter);
-            }
+            },
+
                 
      }
 })

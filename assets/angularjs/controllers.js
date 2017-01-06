@@ -16,6 +16,16 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
             window.location.reload(true);
         };
 
+        $scope.uptask=function(){
+            $scope.showsave=true;
+            $scope.up=true;
+            
+        }
+        $scope.closeupdatetask=function(){
+            $scope.showsave=false;
+            $scope.up=false;
+            $scope.hidemore();
+        }
         //get day time
         $scope.date =  new Date();
         $scope.tickInterval = 1000 //ms
@@ -319,7 +329,22 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
         }
 
         }
-       
+       //update task
+       $scope.EditTask = function (ed) {
+           var startdate = $('#dp3').val();
+           var duedate = $('#dp4').val();
+           var assigned = $scope.getdata_every.Assigned_Users;
+           var tags = $scope.getdata_every.Tags;
+           console.log($scope.getdata_every.status);
+           if (!ed.discription) ed.discription=$scope.getdata_every.Discription;
+           if (!ed.privacy) ed.privacy=$scope.getdata_every.Privacy;
+           if (!ed.priority) ed.priority=$scope.getdata_every.Priority;
+           if (!dp3) startdate=$scope.getdata_every.Start_Date;
+           if (!dp4) duedate=$scope.getdata_every.Due_Date;
+           apiService.postUpdate($scope.Auth.Email, $scope.getdata_every.Task_Name, ed.discription, ed.privacy, ed.priority, tags, assigned, startdate, duedate, $scope.getdata_every.status).then(function(response){
+
+              console.log(response.data); })
+       }
         
        
 })

@@ -712,16 +712,22 @@
                                 <div class="row">
 
                                     <center><label>From</label>
-                                        <span style="margin-left : 10px"><input type="text" name="startdate" style=" border: 1px solid #ccc !important;color: black !important;max-width : 30%;display : table-row"
+                
+                                        <span style="margin-left : 10px"><input type="text" ng-disabled="!up"  name="startdate" style=" border: 1px solid #ccc !important;color: black !important;max-width : 30%;display : table-row"
                                     class="form-control showform1" id="dp3" placeholder="{{getdata_every.Start_Date}}"></span>
                                         <span style="margin-left:20px"><label>To</label></span>
-                                        <span style="margin-left : 10px"><input type="text" name="startdate" style="border: 1px solid #ccc !important;color: black !important;max-width : 30%;display : table-row"
+                                    
+                                        <span style="margin-left : 10px"><input ng-disabled="!up" type="text" name="startdate" style="border: 1px solid #ccc !important;color: black !important;max-width : 30%;display : table-row"
                                     class="form-control showform1" id="dp4" placeholder="{{getdata_every.Due_Date}}"></span>
                                     </center>
 
                                     <div class="col-md-12" style="margin-left:50px;margin-top:10px">
                                         <label>Description</label>
+<<<<<<< HEAD
+                                        <textarea class="form-control valid anx" ng-model="ed.discription" ng-disabled="!up" placeholder="{{getdata_every.Description}}"style="max-width : 84%;" rows="4" name="description"></textarea>
+=======
                                         <textarea class="form-control valid anx" placeholder="{{getdata_every.Discription}}"style="max-width : 84%;" rows="4" name="description"></textarea>
+>>>>>>> 6c9529e0630d237df8b2d5598d67a10102513fef
                                     </div>
 
                                     <div class="col-md-4" ng-click="viewmore()" ng-show="morehide">
@@ -734,7 +740,7 @@
                                         <div class="col-md-12  cokk" style="padding-left :0;margin-top:5px;margin-bottom : 10px">
                                             <div class="col-md-5" style="padding-left : 0">
                                                 <label for="inputTask" style="display : block">Privacy</label>
-                                                <select id="selectbasic" placeholder="{{getdata_every.Privacy}}" name="selectbasic" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important"
+                                                <select id="selectbasic" ng-model="ed.privacy" ng-disabled="!up" placeholder="{{getdata_every.Privacy}}" name="selectbasic" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important"
                                                     class="form-control">
                                                                             <option value="1" style="color : black !important"><i class="icon icon-lock"></i>Public</option>
                                                                             <option class="icon icon-lock" value="2" style="color : black !important">Private</option>
@@ -743,7 +749,7 @@
 
                                             <div class="col-md-5" style="padding-left : 0;">
                                                 <label for="inputTask" style="padding-left : 0;">Priority</label>
-                                                <select id="selectbasic" name="selectbasic" placeholder="{{getdata_every.Priority}}" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important"
+                                                <select id="selectbasic" ng-model="ed.priority" ng-disabled="!up" name="selectbasic" placeholder="{{getdata_every.Priority}}" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important"
                                                     class="form-control">
                                                                 <option value="1" style="color : black !important">None</option>
                                                                 <option value="2" style="color : black !important">Normal</option>
@@ -755,7 +761,7 @@
 
                                         <div class="control1" style="padding-left : 0;margin-top : 10px;padding-right : 0">
                                             <label for="inputTask">Assigned Users</label>
-                                            <input id="tags_4" type="text" style="" class="form-control tags " value="{{getdata_every.Assigned_Users}}" />
+                                            <input id="tags_4" type="text" style="" class="form-control tags " disabled value="{{getdata_every.Assigned_Users}}"/>
                                         </div>
 
                                         <div class="coltrol2" style="padding-left : 0;margin-top : 10px">
@@ -766,7 +772,9 @@
                                 </div>
                             </div>
                             <div class="modal-footer" style="border:none!important">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-default" ng-click="uptask()"ng-show="!showsave">Edit</button>
+                                <button type="button" class="btn btn-default" ng-click="EditTask(ed)"ng-show="showsave">Save</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeupdatetask()">Close</button>
                             </div>
                         </div>
                         
