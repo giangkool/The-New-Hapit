@@ -107,24 +107,27 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
             $scope.hide=false;
             $scope.morehide=true;
         }
+    
 	//checkbox effect
         $scope.check = function (ind){
+              
               for (var i=0;i<=$scope.getdata.length;i++){
                 if (ind==i) $scope.getdata_task=$scope.getdata[i];  
-            }
-                       
-           
+            }  
+         
+               
             if ($scope.checkboxModel[ind]==true)
             {
-               
                 document.getElementById("profitClose_"+ind).style.filter='grayscale(0%)';
-             
             }
-            
             else 
-            
-            {  
-                document.getElementById("profitClose_"+ind).style.filter='grayscale(100%)';}
+            { 
+                document.getElementById("profitClose_"+ind).style.filter='grayscale(100%)';
+                 TaskService.postUpdate($scope.Auth.Email, $scope.getdata_task.Task_Name, $scope.getdata_task.Discription, $scope.getdata_task.Privacy, $scope.getdata_task.Priority, $scope.getdata_task.Tags, $scope.getdata_task.Assigned_Users, $scope.getdata_task.Start_Date, $scope.getdata_task.Due_Date, 1).then(function(response){
+                 console.log(response.data); 
+                })
+
+            }
         }
 
         $scope.checkboxModel = {
