@@ -117,18 +117,27 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
             $scope.hide=false;
             $scope.morehide=true;
         }
+    
 	//checkbox effect
-        $scope.check = function (){
-            console.log($scope.checkboxModel.value);
-            if ($scope.checkboxModel.value==true)
+        $scope.check = function (ind){
+              
+              for (var i=0;i<=$scope.getdata.length;i++){
+                if (ind==i) $scope.getdata_task=$scope.getdata[i];  
+            }  
+         
+               
+            if ($scope.checkboxModel[ind]==true)
             {
-                document.getElementById("profitClose").style.filter='blur(0px)';
-                document.getElementById("profitClose").style.filter='grayscale(0%)'
+                document.getElementById("profitClose_"+ind).style.filter='grayscale(0%)';
             }
-            
             else 
-            { document.getElementById("profitClose").style.filter='blur(1px)'; 
-                document.getElementById("profitClose").style.filter='grayscale(100%)'}
+            { 
+                document.getElementById("profitClose_"+ind).style.filter='grayscale(100%)';
+                 TaskService.postUpdate($scope.Auth.Email, $scope.getdata_task.Task_Name, $scope.getdata_task.Discription, $scope.getdata_task.Privacy, $scope.getdata_task.Priority, $scope.getdata_task.Tags, $scope.getdata_task.Assigned_Users, $scope.getdata_task.Start_Date, $scope.getdata_task.Due_Date, 1).then(function(response){
+                 console.log(response.data); 
+                })
+
+            }
         }
 
         $scope.checkboxModel = {
@@ -263,7 +272,10 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
                 var duedate=$('#dp2').val();
                 var assigned=$('#tags_2').val();
                 var tags=$('#tags_1').val();
-                
+                var ar_assigned=[];
+                for (var i=0;i<=length(assigned);i++){
+
+                }
                 TaskService.postCreate($scope.Auth.Email,nt.taskname,nt.discription,nt.privacy,nt.priority,tags,assigned,startdate,duedate).then(function(response){
                     alert=("Completed");
                     $scope.showcreate=false;
@@ -386,9 +398,20 @@ webtabcontroller.controller('LoginCtrl', function($scope, $localStorage, geoloca
             $scope.rdata=[];
             $scope.rdata.username="";
         //get data from register form
+       function isEmail(email) {
+   var isValid = false;
+   var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+   if(regex.test(email)) {
+    isValid = true;
+   }
+   return isValid;
+  }
+
          $scope.register = function(rdata){
 
+
             console.log($scope.rdata.username);
+            if(isEmail(rdata.username)){
             if(rdata.username.length>=6 && rdata.password.length>=6 && rdata.fullname && rdata.mobile.length>=10)
             {            
 
@@ -401,11 +424,13 @@ webtabcontroller.controller('LoginCtrl', function($scope, $localStorage, geoloca
                         $scope.registerok = true;
                         $scope.registerfalse=false;
                         $scope.registerfalse1=false;
+                        $scope.registerfalse2=false;
                     } 
                     else{
                         $scope.registerfalse = true;
                         $scope.registerok=false;
                         $scope.registerfalse1=false;
+                        $scope.registerfalse2=false;
                     }   
                 });
                 // $scope.hide();
@@ -414,9 +439,17 @@ webtabcontroller.controller('LoginCtrl', function($scope, $localStorage, geoloca
                 $scope.registerfalse1 = true;
                 $scope.registerfalse = false;
                 $scope.registerok=false;
+                $scope.registerfalse2=false;
                 $scope.resultR="Please complete the blank!"
             
-        }
+         }}
+         else {
+         $scope.registerfalse2=true;
+         $scope.registerfalse1 = false;
+         $scope.registerfalse = false;
+         $scope.registerok=false;
+         $scope.resultR="This is not an Email!";
+            }
        }
         $scope.pw=[];
                 $scope.pw.old = "";
