@@ -253,7 +253,10 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
                 var duedate=$('#dp2').val();
                 var assigned=$('#tags_2').val();
                 var tags=$('#tags_1').val();
-                
+                var ar_assigned=[];
+                for (var i=0;i<=length(assigned);i++){
+
+                }
                 TaskService.postCreate($scope.Auth.Email,nt.taskname,nt.discription,nt.privacy,nt.priority,tags,assigned,startdate,duedate).then(function(response){
                     alert=("Completed");
                     $scope.showcreate=false;
@@ -361,9 +364,20 @@ webtabcontroller.controller('LoginCtrl', function($scope, $localStorage, geoloca
             $scope.rdata=[];
             $scope.rdata.username="";
         //get data from register form
+       function isEmail(email) {
+   var isValid = false;
+   var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+   if(regex.test(email)) {
+    isValid = true;
+   }
+   return isValid;
+  }
+
          $scope.register = function(rdata){
 
+
             console.log($scope.rdata.username);
+            if(isEmail(rdata.username)){
             if(rdata.username.length>=6 && rdata.password.length>=6 && rdata.fullname && rdata.mobile.length>=10)
             {            
 
@@ -376,11 +390,13 @@ webtabcontroller.controller('LoginCtrl', function($scope, $localStorage, geoloca
                         $scope.registerok = true;
                         $scope.registerfalse=false;
                         $scope.registerfalse1=false;
+                        $scope.registerfalse2=false;
                     } 
                     else{
                         $scope.registerfalse = true;
                         $scope.registerok=false;
                         $scope.registerfalse1=false;
+                        $scope.registerfalse2=false;
                     }   
                 });
                 // $scope.hide();
@@ -389,9 +405,17 @@ webtabcontroller.controller('LoginCtrl', function($scope, $localStorage, geoloca
                 $scope.registerfalse1 = true;
                 $scope.registerfalse = false;
                 $scope.registerok=false;
+                $scope.registerfalse2=false;
                 $scope.resultR="Please complete the blank!"
             
-        }
+         }}
+         else {
+         $scope.registerfalse2=true;
+         $scope.registerfalse1 = false;
+         $scope.registerfalse = false;
+         $scope.registerok=false;
+         $scope.resultR="This is not an Email!";
+            }
        }
         $scope.pw=[];
                 $scope.pw.old = "";
