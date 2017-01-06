@@ -112,8 +112,7 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
               for (var i=0;i<=$scope.getdata.length;i++){
                 if (ind==i) $scope.getdata_task=$scope.getdata[i];  
             }
-            
-           
+                       
            
             if ($scope.checkboxModel[ind]==true)
             {
