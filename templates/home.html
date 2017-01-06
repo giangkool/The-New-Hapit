@@ -649,7 +649,7 @@
                
                 <div class="col-sm-3 cot1" ng-repeat="content in getdata track by $index">
 
-                    <div ng-style="myStyle"  class="profit" id="profitClose">
+                    <div ng-style="myStyle"  class="profit" id="profitClose_{{$index}}"  >
 
                         <div class="headline ">
 
@@ -658,7 +658,7 @@
                                 <i class="maki-ferry"></i>&#160;&#160;{{content.Task_Name}}</span>
                                  <div class="checkbox col-md-3" style="z-index:50; float:right" >
                                     <label style="font-size: 1.5em">
-                                        <input type="checkbox" ng-click="check()" ng-model="checkboxModel.value">
+                                        <input type="checkbox" ng-click="check($index)" ng-model="checkboxModel[$index]">
                                         <span class="cr"><i style="margin-left: -1px;"class="cr-icon fa fa-check"></i></span>
                                     </label>
                                 </div>

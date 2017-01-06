@@ -108,17 +108,24 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
             $scope.morehide=true;
         }
 	//checkbox effect
-        $scope.check = function (){
-            console.log($scope.checkboxModel.value);
-            if ($scope.checkboxModel.value==true)
+        $scope.check = function (ind){
+              for (var i=0;i<=$scope.getdata.length;i++){
+                if (ind==i) $scope.getdata_task=$scope.getdata[i];  
+            }
+            
+           
+           
+            if ($scope.checkboxModel[ind]==true)
             {
-                document.getElementById("profitClose").style.filter='blur(0px)';
-                document.getElementById("profitClose").style.filter='grayscale(0%)'
+               
+                document.getElementById("profitClose_"+ind).style.filter='grayscale(0%)';
+             
             }
             
             else 
-            { document.getElementById("profitClose").style.filter='blur(1px)'; 
-                document.getElementById("profitClose").style.filter='grayscale(100%)'}
+            
+            {  
+                document.getElementById("profitClose_"+ind).style.filter='grayscale(100%)';}
         }
 
         $scope.checkboxModel = {
