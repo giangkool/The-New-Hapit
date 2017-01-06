@@ -117,15 +117,7 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
             $scope.hide=false;
             $scope.morehide=true;
         }
-        
-        $scope.getPriority = function (int)
-        {
-            for (var i=0;i<=$scope.getdata.length;i++){
-                if (int==i) $scope.getdata_Priority=$scope.getdata[i];  
-            }  
-            return  $scope.getdata_Priority.Priority;
-
-        }
+    
 	//checkbox effect
         $scope.check = function (ind){
               
@@ -139,7 +131,7 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
                 document.getElementById("profitClose_"+ind).style.filter='grayscale(0%)';
             }
             else 
-            {   
+            { 
                 document.getElementById("profitClose_"+ind).style.filter='grayscale(100%)';
                  TaskService.postUpdate($scope.Auth.Email, $scope.getdata_task.Task_Name, $scope.getdata_task.Discription, $scope.getdata_task.Privacy, $scope.getdata_task.Priority, $scope.getdata_task.Tags, $scope.getdata_task.Assigned_Users, $scope.getdata_task.Start_Date, $scope.getdata_task.Due_Date, 1).then(function(response){
                  console.log(response.data); 
@@ -281,7 +273,9 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
                 var assigned=$('#tags_2').val();
                 var tags=$('#tags_1').val();
                 var ar_assigned=[];
-          
+                for (var i=0;i<=length(assigned);i++){
+
+                }
                 TaskService.postCreate($scope.Auth.Email,nt.taskname,nt.discription,nt.privacy,nt.priority,tags,assigned,startdate,duedate).then(function(response){
                     alert=("Completed");
                     $scope.showcreate=false;

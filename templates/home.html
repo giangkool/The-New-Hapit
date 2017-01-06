@@ -555,11 +555,11 @@
 
                                 <div class="col-md-5 " style="padding-left : 0;display : block">
                                     <label for="inputTask" style="padding-left : 0;display : block">Priority</label>
-                                    <select id="selectbasic"  ng-model="nt.priority" name="selectbasic" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important"
+                                    <select id="selectbasic" ng-model="nt.priority" name="selectbasic" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important"
                                         class="form-control">
-                                    <option value=""  style="color : black !important">None</option>
-                                    <option value="1" style="color : black !important">Normal</option>
-                                    <option value="2" style="color : black !important">Important</option>
+                                    <option value="1" style="color : black !important">None</option>
+                                    <option value="2" style="color : black !important">Normal</option>
+                                    <option value="3" style="color : black !important">Important</option>
                                     </select>
                                 </div>
 
@@ -652,19 +652,16 @@
 
                         <div class="headline ">
 
-                            <div class="Priority_{{getPriority($index)}}">
-                                <h3>   
-                                     <span class="col-md-9" id="header-task" data-target="#myModal1" data-toggle="modal">
-                                     <i class="maki-ferry"></i>&#160;&#160;{{content.Task_Name}}</span>
-                                    <div class="checkbox col-md-3" style="z-index:50; float:right" >
-                                        <label style="font-size: 1.5em">
-                                            <input type="checkbox" ng-click="check($index)" ng-model="checkboxModel[$index]">
-                                            <span class="cr"><i style="margin-left: -1px;"class="cr-icon fa fa-check"></i></span>
-                                        </label>
-                                    </div>
-                                </h3>
-                               
-                            </div>
+                            <h3>
+                                <span class="col-md-9" id="header-task" data-target="#myModal1" data-toggle="modal">
+                                <i class="maki-ferry"></i>&#160;&#160;{{content.Task_Name}}</span>
+                                 <div class="checkbox col-md-3" style="z-index:50; float:right" >
+                                    <label style="font-size: 1.5em">
+                                        <input type="checkbox" ng-click="check($index)" ng-model="checkboxModel[$index]">
+                                        <span class="cr"><i style="margin-left: -1px;"class="cr-icon fa fa-check"></i></span>
+                                    </label>
+                                </div>
+                            </h3>
                             <div class="titleClose">
                                 <a href="#profitClose" class="gone">
 
@@ -673,15 +670,18 @@
                         </div>
 
                         <div class="value"  ng-click="getindex($index)" data-target="#myModal1" data-toggle="modal">
-                            <div class="Priority_{{getPriority($index)}}">
-                                 <span class="pull-left"><i class="entypo-clock clock-position"></i>
-                                 </span>
-                                 <div id="getting-started">
-                                    <span class="col-md-3" id="datecounter"></span>
-                                    <span style="font-size : 30px">days</span>
-                                 </div>
+
+                            <span class="pull-left"><i class="entypo-clock clock-position"></i>
+                                </span>
+                            <div id="getting-started">
+                                <span class="col-md-3" id="datecounter"></span>
+
+                                <span style="font-size : 30px">days</span>
                             </div>
+
+
                         </div>
+
                         <div class="progress-tinny">
                             <div style="width: 50%" class="bar"></div>
                         </div>
@@ -1151,9 +1151,3 @@
     document.getElementById("datecounter").innerHTML = daysLeft;
 </script>
     <!--switch-->
-<script>
-$(function() {
-    var temp="a"; 
-    $("#MySelect").val(temp);
-});
-</script>
