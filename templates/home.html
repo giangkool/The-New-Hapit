@@ -376,8 +376,6 @@
                                     <hr>
 
                                     <dl class="dl-horizontal-profile">
-                                        <dt>Fullname</dt>
-                                        <dd>{{Auth.Fullname}} </dd>
 
                                         <dt>Email</dt>
                                         <dd>{{Auth.Email}}</dd>
@@ -610,7 +608,7 @@
                             <button type="button" id="nut2" data-toggle="modal" data-target="#myModal" class="btn btn-danger">
                                     <span class="entypo-cancel-squared"></span>&nbsp;&nbsp;Cancel</button>
                         </div>
-<button type="button" class="btn btn-default" >Clo</button>
+
                         <!-- Modal -->
                         <div class="modal fade" id="myModal" role="dialog">
                             <div class="modal-dialog">
@@ -724,9 +722,8 @@
                                     <div class="col-md-12" style="margin-left:50px;margin-top:10px">
                                         <label>Description</label>
 
-                                        <textarea class="form-control valid anx" ng-model="ed.discription" ng-disabled="!up" placeholder="{{getdata_every.Description}}"style="max-width : 84%;" rows="4" name="description"></textarea>
+                                        <textarea class="form-control valid anx" ng-model="ed.discription" ng-disabled="!up" placeholder="{{getdata_every.Discription}}"style="max-width : 84%;" rows="4" name="discription"></textarea>
 
-                                        <textarea class="form-control valid anx" placeholder="{{getdata_every.Discription}}"style="max-width : 84%;" rows="4" name="description"></textarea>
 
                                     </div>
 
@@ -740,22 +737,25 @@
                                         <div class="col-md-12  cokk" style="padding-left :0;margin-top:5px;margin-bottom : 10px">
                                             <div class="col-md-5" style="padding-left : 0">
                                                 <label for="inputTask" style="display : block">Privacy</label>
-                                                <select id="selectbasic" ng-model="ed.privacy" ng-disabled="!up" placeholder="{{getdata_every.Privacy}}" name="selectbasic" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important"
-                                                    class="form-control">
-                                                                            <option value="1" style="color : black !important"><i class="icon icon-lock"></i>Public</option>
-                                                                            <option class="icon icon-lock" value="2" style="color : black !important">Private</option>
+                                                <select id="selectbasic" ng-model="ed.privacy"  placeholder="{{getdata_every.Privacy}}" name="selectbasic" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important"
+                                                    class="form-control"ng-show="updatetask">
+                                                                            <option value="Public" style="color : black !important"><i class="icon icon-lock"></i>Public</option>
+                                                                            <option class="icon icon-lock" value="Private" style="color : black !important">Private</option>
                                                                         </select>
+                                                <span ng-show="!updatetask"><input  class="form-control" type="text" disabled placeholder="{{getdata_every.Privacy}}" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important" ></span>
                                             </div>
 
                                             <div class="col-md-5" style="padding-left : 0;">
                                                 <label for="inputTask" style="padding-left : 0;">Priority</label>
-                                                <select id="selectbasic" ng-model="ed.priority" ng-disabled="!up" name="selectbasic" placeholder="{{getdata_every.Priority}}" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important"
-                                                    class="form-control">
-                                                                <option value="1" style="color : black !important">None</option>
-                                                                <option value="2" style="color : black !important">Normal</option>
-                                                                <option value="2" style="color : black !important">Important</option>
+                                                <select id="selectbasic" ng-model="ed.priority"  name="selectbasic" placeholder="{{getdata_every.Priority}}" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important"
+                                                    class="form-control"ng-show="updatetask">
+                                                                <option value="None" style="color : black !important">None</option>
+                                                                <option value="Normal" style="color : black !important">Normal</option>
+                                                                <option value="Important" style="color : black !important">Important</option>
                                                 </select>
+                                                <span ng-show="!updatetask"><input  class="form-control" type="text" disabled placeholder="{{getdata_every.Priority}}" style="max-width : 97%;display : table-row;color: black !important; border: 1px solid #ccc !important" ></span>
                                             </div>
+                                            
 
                                         </div>
 

@@ -19,11 +19,12 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
         $scope.uptask=function(){
             $scope.showsave=true;
             $scope.up=true;
-            
+            $scope.updatetask=true;
         }
         $scope.closeupdatetask=function(){
             $scope.showsave=false;
             $scope.up=false;
+            $scope.updatetask=false;
             $scope.hidemore();
         }
         //get day time
@@ -273,9 +274,7 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
                 var assigned=$('#tags_2').val();
                 var tags=$('#tags_1').val();
                 var ar_assigned=[];
-                for (var i=0;i<=length(assigned);i++){
 
-                }
                 TaskService.postCreate($scope.Auth.Email,nt.taskname,nt.discription,nt.privacy,nt.priority,tags,assigned,startdate,duedate).then(function(response){
                     alert=("Completed");
                     $scope.showcreate=false;
@@ -310,6 +309,7 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
                   $scope.profilereturn = response.data;
                   $scope.showupdate = true ;
                   $scope.profile();
+                  window.location.reload(true);
                   console.log($scope.profilereturn);
                   }
                   if (response.data._error_code=="03"){
@@ -325,19 +325,30 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
         }
        //update task
        $scope.EditTask = function (ed) {
+           
            var startdate = $('#dp3').val();
            var duedate = $('#dp4').val();
            var assigned = $scope.getdata_every.Assigned_Users;
            var tags = $scope.getdata_every.Tags;
-           console.log($scope.getdata_every.status);
+           if (!startdate) startdate=$scope.getdata_every.Start_Date;
+           if (!duedate) duedate=$scope.getdata_every.Due_Date;
+           if(!ed) {
+           var tamp=$scope.getdata_every.Discription;
+           var tamp1=$scope.getdata_every.Privacy;
+           var tamp2=$scope.getdata_every.Priority;
+           TaskService.postUpdate($scope.Auth.Email, $scope.getdata_every.Task_Name, tamp, tamp1, tamp2, tags, assigned, startdate, duedate, $scope.getdata_every.Status).then(function(response){
+              window.localStorage.setItem('getdata_every', JSON.stringify(response.data));
+              window.location.reload(true);
+              console.log(response.data); })
+           }else{
            if (!ed.discription) ed.discription=$scope.getdata_every.Discription;
            if (!ed.privacy) ed.privacy=$scope.getdata_every.Privacy;
            if (!ed.priority) ed.priority=$scope.getdata_every.Priority;
-           if (!dp3) startdate=$scope.getdata_every.Start_Date;
-           if (!dp4) duedate=$scope.getdata_every.Due_Date;
-           apiService.postUpdate($scope.Auth.Email, $scope.getdata_every.Task_Name, ed.discription, ed.privacy, ed.priority, tags, assigned, startdate, duedate, $scope.getdata_every.status).then(function(response){
-
+           TaskService.postUpdate($scope.Auth.Email, $scope.getdata_every.Task_Name, ed.discription, ed.privacy, ed.priority, tags, assigned, startdate, duedate, $scope.getdata_every.Status).then(function(response){
+              window.localStorage.setItem('getdata_every', JSON.stringify(response.data));
+              window.location.reload(true);
               console.log(response.data); })
+           }
        }
         
        
