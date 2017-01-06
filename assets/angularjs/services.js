@@ -27,7 +27,11 @@ angular.module('webtab.Service', [])
                 parameter ='&email='+ email + '&password='+ password +'&fullname='+fullname+ '&birthday='+ birthday +'&sex=' + sex +'&mobile=' + mobile +'&address=' + address +'&personalId=' +personalId;
                 url = pro_api_gateway_url+ 'UpdateProfile?';
                 return $http.post(url + parameter);
-            }
+            },
+            postUpdate : function (email, task_name, discription, privacy, priority, tags, assigned_users, start_date, due_date, status){
+                parameter ='&email='+email+'&task_name='+task_name+'&discription='+discription+'&privacy=' + privacy+'&priority='+priority+'&tags='+tags+'&assigned_users='+assigned_users+'&start_date='+start_date+'&due_date='+due_date+'&status='+status;
+                url=  pro_api_gateway_url +'Update?';
+                return $http.post(url + parameter);}
                 
      }
 })
