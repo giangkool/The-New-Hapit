@@ -116,9 +116,10 @@
                                 class="form-control valid">
                             <h5 ng-show="_error" style="color: red; text-align: center">Email or Password incorrect, please try again !</h5>
                         </div>
-                        <div class="checkbox pull-left">
-                            <label>
-                            <input type="checkbox">Remember me</label>
+                        <div class="checkbox pull-left" style="margin-top:0px !important">
+                                                        
+                            <input type="checkbox"><label>Remember me</label><br>
+                            <a style="margin-left:-20px;" data-toggle="modal" data-target="#myModal1" href="#">Forgot your password ?</a>                       
                         </div>
                         <div class="form-actions">
                             <button class="btn btn btn-primary pull-right" type="submit" ng-click="login(data)">
@@ -269,7 +270,32 @@
     </div>
 
 
-
+<div class="modal fade" id="myModal1" role="dialog">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Email for reset password</h4>
+      </div>
+                            <div class="modal-body">
+                               <div class="control-group">
+                            <label for="inputRegisterEmail" style="display : block">Email</label>
+                            <input type="text" ng-model="pw.email" style="max-width : 92%;display : table-row" id="inputRegisterEmail" name="remail"
+                                class="form-control valid">
+                                <div ng-show="forgotok">
+                                    <strong style="color:red;">Success ! Please check the Email.</strong>
+                                </div>
+                                <div ng-show="forgotfalse">
+                                    <strong>Error !</strong> {{result._error_messenger}}
+                                </div>                                                   
+                            </div>
+                            <div class="modal-footer">
+        <button class="btn btn btn-primary" ng-click="forgotpw(pw)" type="submit" >Sent</button>
+      </div>
+                        </div>
+                    </div>
+                </div>
+</div>	
 
 
     <div style="text-align:center;margin:0 auto;">

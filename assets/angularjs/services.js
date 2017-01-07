@@ -28,6 +28,11 @@ angular.module('webtab.Service', [])
                 url = pro_api_gateway_url+ 'UpdateProfile?';
                 return $http.post(url + parameter);
             },
+            postForgot : function (email, password){
+                parameter ='&email='+ email +'&password='+ password;
+                url = pro_api_gateway_url+ 'forgot?';
+             return $http.post(url + parameter);
+            }
 
                 
      }

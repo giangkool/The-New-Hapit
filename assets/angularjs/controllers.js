@@ -418,6 +418,26 @@ webtabcontroller.controller('LoginCtrl', function($scope, $localStorage, geoloca
    return isValid;
   }
 
+         $scope.forgotpw=function(pw){
+             var password= md5.createHash("123456");
+             console.log(password);
+             if(isEmail($scope.pw.email))
+             {
+                  apiService.postForgot($scope.pw.email,password).then(function(response){
+                   $scope.result=response.data;
+                   console.log($scope.result);
+                   if($scope.result._error_code=='00')
+                   {
+                        $scope.forgotok = true;
+                        $scope.forgotfalse=false;
+                   }
+                   else{
+                       $scope.forgotok = false;
+                        $scope.forgotfalse=true;
+                   }
+                    
+                  })
+         }}
          $scope.register = function(rdata){
 
 
