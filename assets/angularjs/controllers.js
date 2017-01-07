@@ -330,6 +330,16 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
         }
 
         }
+          $scope.Delete = function(gettask)
+         {
+            console.log($scope.Auth.Email);
+            TaskService.postDelete($scope.Auth.Email,gettask.Task_Name).then(function(response){
+                    console.log(response.data);
+                     window.location.reload(true);
+                        console.log(response.data);
+            })
+         
+         }
        //update task
        $scope.EditTask = function (ed) {
            
@@ -445,6 +455,10 @@ webtabcontroller.controller('LoginCtrl', function($scope, $localStorage, geoloca
                     
                   })
          }}
+       
+
+
+
          $scope.register = function(rdata){
 
 
