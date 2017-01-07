@@ -2404,8 +2404,23 @@ img.sidebar-icon {
     padding: 15px;
     text-transform: uppercase;
 }
-.profit .headline h3 span {
+.profit .headline .Priority_3 h3 span {
+    background-color: #FFA200;
+    border-radius: 20px;
+    padding: 0 10px;
+}
+.profit .headline .Priority_2 h3 span {
     background-color: #FF6B6B;
+    border-radius: 20px;
+    padding: 0 10px;
+}
+.profit .headline .Priority_1 h3 span {
+    background-color: #45B6B0;
+    border-radius: 20px;
+    padding: 0 10px;
+}
+.profit .headline .Priority_undefined h3 span {
+    background-color: #45B6B0;
     border-radius: 20px;
     padding: 0 10px;
 }
@@ -2413,7 +2428,17 @@ img.sidebar-icon {
     font-style: normal;
     margin-left: 5px;
 }
-.profit .value {
+.profit .value  .Priority_3{
+    border-radius: 6px;
+    font: 5em Open Sans;
+    letter-spacing: -3px;
+    margin: 20px auto 0;
+    position: relative;
+    text-align: center;
+    color: #FFA200;
+}
+
+.profit .value .Priority_2{
     border-radius: 6px;
     font: 5em Open Sans;
     letter-spacing: -3px;
@@ -2421,6 +2446,26 @@ img.sidebar-icon {
     position: relative;
     text-align: center;
     color: #FF6B6B;
+}
+
+.profit .value  .Priority_1{
+    border-radius: 6px;
+    font: 5em Open Sans;
+    letter-spacing: -3px;
+    margin: 20px auto 0;
+    position: relative;
+    text-align: center;
+    color: #45B6B0;
+}
+
+.profit .value .Priority_undefined{
+    border-radius: 6px;
+    font: 5em Open Sans;
+    letter-spacing: -3px;
+    margin: 20px auto 0;
+    position: relative;
+    text-align: center;
+    color: #45B6B0;
 }
 .profit .value span {
     font-size: 60px;

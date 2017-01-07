@@ -118,7 +118,14 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
             $scope.hide=false;
             $scope.morehide=true;
         }
-    
+         $scope.getPriority = function (int)
+        {
+            for (var i=0;i<=$scope.getdata.length;i++){
+                if (int==i) $scope.getdata_Priority=$scope.getdata[i];  
+            }  
+            return  $scope.getdata_Priority.Priority;
+
+        }
 	//checkbox effect
         $scope.check = function (ind){
               
