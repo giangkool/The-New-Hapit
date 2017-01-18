@@ -35,7 +35,16 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
             $timeout(tick, $scope.tickInterval);
         }
         $timeout(tick, $scope.tickInterval);
-        $scope.homepage=true;
+        TaskService.postGetAll($scope.Auth.Email).then(function(response){
+                $scope.getdt=response.data;
+                 if (response.data.length==0)  {$scope.homepage=true; $scope.showalltask=false;}
+             else 
+                {$scope.showalltask=true;
+                 $scope.showtask(); 
+                 $scope.homepage=false;
+            }
+            })
+        
         $scope.showcreate=false;
         //show create new task
         $scope.createtask=function(){
@@ -50,12 +59,25 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
         //show every task
 
         $scope.getindex=function(xpa){
-            
-            for (var i=0;i<=$scope.getdata.length;i++){
-                if (xpa==i) $scope.getdata_every=$scope.getdata[i];  
+            $scope.closeupdatetask();
+            console.log($scope.upfinish);
+            for (var i=0;i<$scope.getdata.length;i++){
+                if (xpa==i) {
+                $scope.getdata_every=$scope.getdata[i];  
+                var s ='';
+                for (var j=0;j<$scope.getdata_every.List_tags.length-1;j++)
+                    s=s+$scope.getdata_every.List_tags[j].Name+', ';
+                    s=s+$scope.getdata_every.List_tags[$scope.getdata_every.List_tags.length-1].Name;
+                    console.log(s);
+                    $scope.stringgg=s;
+                }
             }
         
         }
+            
+          
+        
+        
         //show all task
         $scope.showtask=function(){
             $scope.showalltask=true;
@@ -96,6 +118,9 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
         
         $scope.linkhome=function(){
             $scope.homepage=true;
+            if ($scope.getdata.length==0) $scope.Beginer= true;
+            else $scope.Beginer=false;
+            $scope.Beginer=true;
             $scope.showcreate=false;
             $scope.showalltask=false;
             $scope.account=false;
@@ -123,7 +148,10 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
             for (var i=0;i<=$scope.getdata.length;i++){
                 if (int==i) $scope.getdata_Priority=$scope.getdata[i];  
             }  
-            return  $scope.getdata_Priority.Priority;
+            if ($scope.getdata_Priority.Priority=="None") return 1;
+            if ($scope.getdata_Priority.Priority=="Normal") return 2;
+            if ($scope.getdata_Priority.Priority=="Important") return 3;
+            return $scope.getdata_Priority.Priority;
 
         }
 	//checkbox effect
@@ -183,6 +211,7 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
             $scope.showupprofile=true;
             $scope.nullpass=false;
             $scope.wrongpass=false;
+            $scope.warn=false;
         }
         //check validate
         $scope.pw=[];
@@ -273,26 +302,59 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
         }
         $scope.nt=[];
         $scope.nt.taskname="";
+                    var arr = new Array();
+                    var arr_2 = new Array();
+            $scope._tags=[];         
+                    $("#tags_1_tag").on("keydown",function search(e) {
+                        if(e.keyCode == 13) {
+                            arr.push({ Name : $(this).val()}); 
+                            var abx =JSON.stringify(arr);
+                        }
+                        $scope._tags = abx;
+                    });
+            $scope._assigned_user=[];
+                    $("#tags_2_tag").on("keydown",function search(e) {
+                        if(e.keyCode == 13) {
+                            arr_2.push({ Mail : $(this).val()}); 
+                            var abx =JSON.stringify(arr_2);
+                        }
+                        $scope._assigned_user = abx;
+                    });
+                   
         $scope.add_newtask=function(nt){
             if($scope.nt.taskname!="")
             {
+                 console.log($scope._tags,$scope._assigned_user);
                 var startdate=$('#dp1').val();
                 var duedate=$('#dp2').val();
-                var assigned=$('#tags_2').val();
-                var tags=$('#tags_1').val();
+                var assigned=$scope._assigned_user;
+                var tags=$scope._tags;
                 var ar_assigned=[];
 
                 TaskService.postCreate($scope.Auth.Email,nt.taskname,nt.discription,nt.privacy,nt.priority,tags,assigned,startdate,duedate).then(function(response){
                     alert=("Completed");
                     $scope.showcreate=false;
                     $scope.homepage=true;
+                    console.log(response.data);
+                     if ($scope.getdata.length==0) $scope.Beginer= true;
+            else $scope.Beginer=false;
                 })
             }
         }
+        function clear(){
+            document.getElementById("pf1").value = "";
+            document.getElementById("pf2").value = "";
+            document.getElementById("birthday").value = "";
+            document.getElementById("pf4").value = "";
+            document.getElementById("pf5").value = "";
+            document.getElementById("pf6").value = "";
+            document.getElementById("pf7").value = "";
 
+        }
         $scope.save_updateprofile=function(pf){
+            
             if(!pf||pf.password=="") 
-            {$scope.nullpass=true;
+            {$scope.wrongpass=false;
                 $scope.warn=true;    
             }else {
                 $scope.warn=false;
@@ -316,56 +378,62 @@ webtabcontroller.controller('WebCtrl', function ($rootScope, $scope,md5, $localS
                   $scope.profilereturn = response.data;
                   $scope.showupdate = true ;
                   $scope.profile();
-                  window.location.reload(true);
                   console.log($scope.profilereturn);
+                  $scope.upagain=true;
+                 clear();
                   }
                   if (response.data._error_code=="03"){
                       $scope.updateprofile();
                       $scope.wrongpass= true;
+                      $scope.warn=false;
                   }
 
             })
 
             
         }
-
+            
         }
           $scope.Delete = function(gettask)
          {
             console.log($scope.Auth.Email);
             TaskService.postDelete($scope.Auth.Email,gettask.Task_Name).then(function(response){
-                    console.log(response.data);
                      window.location.reload(true);
-                        console.log(response.data);
-            })
+                                })
          
          }
+
        //update task
        $scope.EditTask = function (ed) {
            
            var startdate = $('#dp3').val();
            var duedate = $('#dp4').val();
-           var assigned = $scope.getdata_every.Assigned_Users;
-           var tags = $scope.getdata_every.Tags;
+           var assigned = $scope.getdata_every.List_assigned;
+           var tags = $scope.getdata_every.List_tags;
+           
            if (!startdate) startdate=$scope.getdata_every.Start_Date;
            if (!duedate) duedate=$scope.getdata_every.Due_Date;
            if(!ed) {
            var tamp=$scope.getdata_every.Discription;
            var tamp1=$scope.getdata_every.Privacy;
            var tamp2=$scope.getdata_every.Priority;
-           TaskService.postUpdate($scope.Auth.Email, $scope.getdata_every.Task_Name, tamp, tamp1, tamp2, tags, assigned, startdate, duedate, $scope.getdata_every.Status).then(function(response){
+           TaskService.postUpdate($scope.Auth.Email, $scope.getdata_every.Task_Name, tamp, tamp1, tamp2, $scope.getdata_every.List_tags, $scope.getdata_every.List_assigned, startdate, duedate, $scope.getdata_every.Status).then(function(response){
               window.localStorage.setItem('getdata_every', JSON.stringify(response.data));
+              $scope.upfinish=response.data;
               window.location.reload(true);
               console.log(response.data); })
            }else{
            if (!ed.discription) ed.discription=$scope.getdata_every.Discription;
            if (!ed.privacy) ed.privacy=$scope.getdata_every.Privacy;
            if (!ed.priority) ed.priority=$scope.getdata_every.Priority;
-           TaskService.postUpdate($scope.Auth.Email, $scope.getdata_every.Task_Name, ed.discription, ed.privacy, ed.priority, tags, assigned, startdate, duedate, $scope.getdata_every.Status).then(function(response){
+           TaskService.postUpdate($scope.Auth.Email, $scope.getdata_every.Task_Name, ed.discription, ed.privacy, ed.priority, $scope.getdata_every.List_tags, $scope.getdata_every.List_assigned, startdate, duedate, $scope.getdata_every.Status).then(function(response){
               window.localStorage.setItem('getdata_every', JSON.stringify(response.data));
+
+              $scope.upfinish=response.data;
               window.location.reload(true);
               console.log(response.data); })
            }
+           
        }
         
        
